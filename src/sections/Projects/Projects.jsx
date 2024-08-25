@@ -1,9 +1,9 @@
-import styles from './ProjectsStyles.module.css';
-import viberr from '../../assets/viberr.png';
-import freshBurger from '../../assets/fresh-burger.png';
-import hipsster from '../../assets/hipsster.png';
-import fitLift from '../../assets/fitlift.png';
-import ProjectCard from '../../common/ProjectCard';
+import styles from "./ProjectsStyles.module.css";
+import pc_part_recommender from "../../assets/pc_parts.png";
+import juixer from "../../assets/juixer.png";
+import spotify_clone from "../../assets/spotify.png";
+import shoe_website from "../../assets/shoe.png";
+import ProjectCard from "../../common/ProjectCard";
 
 function Projects() {
   return (
@@ -11,28 +11,28 @@ function Projects() {
       <h1 className="sectionTitle">Projects</h1>
       <div className={styles.projectsContainer}>
         <ProjectCard
-          src={viberr}
-          link="https://github.com/Ade-mir/company-landing-page-2"
-          h3="Viberr"
-          p="Streaming App"
+          src={pc_part_recommender}
+          link="https://github.com/drkanurag/PC_PART_RECOMMENDER"
+          h3="Pc-Parts"
+          p="PC-Part Recommender"
         />
         <ProjectCard
-          src={freshBurger}
-          link="https://github.com/Ade-mir/company-landing-page-2"
-          h3="Fresh Burger"
-          p="Hamburger Restaurant"
+          src={juixer}
+          link="https://github.com/drkanurag/juixer"
+          h3="Juixer"
+          p="Juixer-The Bartender"
         />
         <ProjectCard
-          src={hipsster}
-          link="https://github.com/Ade-mir/company-landing-page-2"
-          h3="Hipsster"
-          p="Glasses Shop"
+          src={spotify_clone}
+          link="https://github.com/drkanurag/Spotify-Clone"
+          h3="Spotify"
+          p="Spotify Clone"
         />
         <ProjectCard
-          src={fitLift}
-          link="https://github.com/Ade-mir/company-landing-page-2"
-          h3="FitLift"
-          p="Fitness App"
+          src={shoe_website}
+          link="https://github.com/drkanurag/shoe-website"
+          h3="Shoes"
+          p="Shoes Website"
         />
       </div>
     </section>
