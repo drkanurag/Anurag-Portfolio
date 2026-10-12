@@ -5,8 +5,8 @@
 ### 🚀 **[👉 CLICK HERE TO OPEN LIVE PORTFOLIO (https://drkanurag.github.io/Anurag-Portfolio/) 👈](https://drkanurag.github.io/Anurag-Portfolio/)**
 
 [![Launch Live Portfolio — GitHub Pages](https://img.shields.io/badge/🌍_LIVE_PORTFOLIO_(GITHUB_PAGES)-Click_Here_to_Open-0ea5e9?style=for-the-badge&logo=github)](https://drkanurag.github.io/Anurag-Portfolio/)
-[![Instant Cloudflare CDN Live Link](https://img.shields.io/badge/⚡_ALWAYS--ON_CDN_LIVE_LINK-raw.githack.com-10b981?style=for-the-badge&logo=cloudflare&logoColor=white)](https://raw.githack.com/drkanurag/Anurag-Portfolio/main/launch.html)
-[![Direct Standalone Launch](https://img.shields.io/badge/🚀_DIRECT_LAUNCH_MIRROR-launch.html-6366f1?style=for-the-badge)](https://drkanurag.github.io/Anurag-Portfolio/launch.html)
+[![Direct Standalone Launch](https://img.shields.io/badge/🚀_DIRECT_LAUNCH_MIRROR-launch.html-10b981?style=for-the-badge)](https://drkanurag.github.io/Anurag-Portfolio/launch.html)
+[![Interactive AI Lab](https://img.shields.io/badge/🧪_INTERACTIVE_AI_LAB-Explore_Demos-6366f1?style=for-the-badge)](https://drkanurag.github.io/Anurag-Portfolio/#interactive-lab)
 [![Local Dev Server](https://img.shields.io/badge/💻_LOCAL_DEV_SERVER-localhost:5173-f59e0b?style=for-the-badge)](http://localhost:5173/)
 
 [![GitHub Profile](https://img.shields.io/badge/GitHub-@drkanurag-181717?style=flat-square&logo=github)](https://github.com/drkanurag)
@@ -26,17 +26,16 @@ Anyone can open and explore the full interactive portfolio immediately in any br
 | Environment | Direct 1-Click Live URL | Description & Reliability |
 | :--- | :--- | :--- |
 | 🌍 **1. Primary Live Website (GitHub Pages)** | 👉 **[https://drkanurag.github.io/Anurag-Portfolio/](https://drkanurag.github.io/Anurag-Portfolio/)** | **Official GitHub Pages deployment.** Automatically serves the full React 18 + TypeScript + Tailwind CSS interactive portfolio. |
-| ⚡ **2. Instant Global CDN Mirror (`raw.githack.com`)** | 👉 **[https://raw.githack.com/drkanurag/Anurag-Portfolio/main/launch.html](https://raw.githack.com/drkanurag/Anurag-Portfolio/main/launch.html)** | **Always-on Cloudflare CDN mirror** served directly from the `main` branch (`launch.html` + `public/dist-bundle/`). Works instantly even if GitHub Pages is rebuilding. |
-| 🚀 **3. Direct Standalone Endpoint (`launch.html`)** | 👉 **[https://drkanurag.github.io/Anurag-Portfolio/launch.html](https://drkanurag.github.io/Anurag-Portfolio/launch.html)** | Direct pre-compiled production bundle endpoint with zero runtime build dependencies. |
-| 🌐 **4. HTMLPreview Cloud Backup Mirror** | 👉 **[Open via HTMLPreview CDN](https://htmlpreview.github.io/?https://github.com/drkanurag/Anurag-Portfolio/blob/main/launch.html)** | Secondary cloud mirror for instant browser viewing. |
-| 💻 **5. Local Development Server** | 👉 **[http://localhost:5173/](http://localhost:5173/)** | Local Vite HMR server (or double-click [`LAUNCH_PORTFOLIO.bat`](./LAUNCH_PORTFOLIO.bat)). |
+| 🚀 **2. Direct Standalone Endpoint (`launch.html`)** | 👉 **[https://drkanurag.github.io/Anurag-Portfolio/launch.html](https://drkanurag.github.io/Anurag-Portfolio/launch.html)** | **Always-on pre-compiled IIFE bundle endpoint** served directly from `launch.html` + `public/dist-bundle/`. |
+| 🌐 **3. HTMLPreview Cloud Backup Mirror** | 👉 **[Open via HTMLPreview CDN](https://htmlpreview.github.io/?https://github.com/drkanurag/Anurag-Portfolio/blob/main/launch.html)** | Secondary cloud mirror for instant browser viewing. |
+| 💻 **4. Local Development Server** | 👉 **[http://localhost:5173/](http://localhost:5173/)** | Local Vite HMR server (or double-click [`index.html`](./index.html), [`launch.html`](./launch.html), or [`LAUNCH_PORTFOLIO.bat`](./LAUNCH_PORTFOLIO.bat)). |
 
 ### Direct Deep-Links to Flagship Engineering Case Studies
-- 🛣️ **Case Study 01 — RoadVision AI (Computer Vision & ASTM D6433):** [Open Case Study ↗](https://raw.githack.com/drkanurag/Anurag-Portfolio/main/launch.html#/projects/roadvision-ai)
-- 🌐 **Case Study 02 — DataLens Global Manager (RLS/CLS Governance Mesh):** [Open Case Study ↗](https://raw.githack.com/drkanurag/Anurag-Portfolio/main/launch.html#/projects/datalens-global)
-- 🍽️ **Case Study 03 — Rooted (PostgreSQL 18 3NF Surplus Food Platform):** [Open Case Study ↗](https://raw.githack.com/drkanurag/Anurag-Portfolio/main/launch.html#/projects/rooted-food-platform)
-- 🔍 **Case Study 04 — BLUME (Published IJCRT2305259 CCTV AI Research):** [Open Case Study ↗](https://raw.githack.com/drkanurag/Anurag-Portfolio/main/launch.html#/projects/blume-research)
-- 🌤️ **Case Study 05 — AETHER (Weather Intelligence & Client DSA):** [Open Case Study ↗](https://raw.githack.com/drkanurag/Anurag-Portfolio/main/launch.html#/projects/aether-weather)
+- 🛣️ **Case Study 01 — RoadVision AI (Computer Vision & ASTM D6433):** [https://drkanurag.github.io/Anurag-Portfolio/#/projects/roadvision-ai](https://drkanurag.github.io/Anurag-Portfolio/#/projects/roadvision-ai)
+- 🌐 **Case Study 02 — DataLens Global Manager (RLS/CLS Governance Mesh):** [https://drkanurag.github.io/Anurag-Portfolio/#/projects/datalens-global](https://drkanurag.github.io/Anurag-Portfolio/#/projects/datalens-global)
+- 🍽️ **Case Study 03 — Rooted (PostgreSQL 18 3NF Surplus Food Platform):** [https://drkanurag.github.io/Anurag-Portfolio/#/projects/rooted-food-platform](https://drkanurag.github.io/Anurag-Portfolio/#/projects/rooted-food-platform)
+- 🔍 **Case Study 04 — BLUME (Published IJCRT2305259 CCTV AI Research):** [https://drkanurag.github.io/Anurag-Portfolio/#/projects/blume-research](https://drkanurag.github.io/Anurag-Portfolio/#/projects/blume-research)
+- 🌤️ **Case Study 05 — AETHER (Weather Intelligence & Client DSA):** [https://drkanurag.github.io/Anurag-Portfolio/#/projects/aether-weather](https://drkanurag.github.io/Anurag-Portfolio/#/projects/aether-weather)
 
 ---
 
