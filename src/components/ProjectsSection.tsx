@@ -3,11 +3,7 @@ import {
   ArrowUpRight,
   BookOpen,
   CheckCircle2,
-  Code2,
   ExternalLink,
-  Filter,
-  FolderGit2,
-  Layers,
   Search,
   Sparkles,
   X,
@@ -18,7 +14,7 @@ import {
   FEATURED_PROJECTS,
   filterProjectsCatalogue,
 } from '../lib/catalogueEngine';
-import { Project, ProjectDomain, ProjectSlug } from '../types/portfolio';
+import { ProjectDomain, ProjectSlug } from '../types/portfolio';
 import { InteractiveProjectLab } from './InteractiveProjectLab';
 
 interface ProjectsSectionProps {

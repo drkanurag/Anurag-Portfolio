@@ -145,6 +145,7 @@ export const STATIC_NAV_ROUTES: readonly NavRouteDefinition[] = [
   { id: 'skills', number: '03', label: 'EXPERTISE', href: '#skills' },
   { id: 'experience', number: '04', label: 'EXPERIENCE', href: '#experience' },
   { id: 'research', number: '05', label: 'RESEARCH', href: '#research' },
-  { id: 'architecture', number: '06', label: 'ARCHITECTURE', href: '#architecture' },
-  { id: 'contact', number: '07', label: 'CONTACT', href: '#contact' },
+  { id: 'sdlc', number: '06', label: 'BUILD', href: '#sdlc' },
+  { id: 'architecture', number: '07', label: 'SYSTEMS', href: '#architecture' },
+  { id: 'contact', number: '08', label: 'CONTACT', href: '#contact' },
 ];

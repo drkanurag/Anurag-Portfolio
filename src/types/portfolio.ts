@@ -94,6 +94,49 @@ export interface ProjectCaseStudy {
     limitations: string[];
     roadmap: ProjectRoadmapItem[];
   };
+  sdlc?: SdlcPhaseNote[];
+  systemDesign?: SystemDesignNotes;
+  algorithms?: DataStructureSpec[];
+}
+
+export interface SdlcPhaseNote {
+  phase:
+    | 'Requirements'
+    | 'Design'
+    | 'Implementation'
+    | 'Testing'
+    | 'CI/CD'
+    | 'Deployment'
+    | 'Monitoring'
+    | 'Maintenance';
+  summary: string;
+  status: 'Done' | 'Designed only' | 'Simulated' | 'Not applicable';
+}
+
+export interface ServiceSpec {
+  name: string;
+  responsibility: string;
+  ownsData: string;
+  exposes: string;
+  techStack: string;
+}
+
+export interface SystemDesignNotes {
+  requirements: {
+    functional: string[];
+    nonFunctional: string[];
+  };
+  dataModel: string;
+  apiDesign: string[];
+  scaling: string[];
+  failureHandling: string[];
+  tradeoffs: {
+    decision: string;
+    chosen: string;
+    rejected: string;
+    reason: string;
+  }[];
+  services?: ServiceSpec[];
 }
 
 export interface Project {

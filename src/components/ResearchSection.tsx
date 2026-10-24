@@ -2,14 +2,10 @@ import React from 'react';
 import {
   AlertCircle,
   ArrowUpRight,
-  Award,
   BookOpen,
   CheckCircle2,
   Download,
   ExternalLink,
-  FileText,
-  Layers,
-  Microscope,
 } from 'lucide-react';
 import { BLUME_RESEARCH_DATA } from '../data/portfolioData';
 import { ProjectSlug } from '../types/portfolio';

@@ -5,15 +5,9 @@ import {
   BookOpen,
   BrainCircuit,
   Code2,
-  Cpu,
-  Database,
   ExternalLink,
   FileText,
-  GraduationCap,
-  Layers,
   Mail,
-  Sparkles,
-  Terminal,
 } from 'lucide-react';
 import { GithubIcon as Github, LinkedinIcon as Linkedin } from './BrandIcons';
 import { PROFILE_DATA } from '../data/portfolioData';
@@ -98,48 +92,45 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             </div>
 
             {/* Editorial Headline */}
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-[3.35rem] font-bold tracking-tight text-white leading-[1.1]">
-              Building{' '}
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-[3.25rem] font-bold tracking-tight text-white leading-[1.15]">
+              AI &amp; Data Science engineer with a{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-cyan-300 to-emerald-300">
-                intelligent systems
-              </span>{' '}
-              that solve real-world problems.
+                Java/Spring backend foundation.
+              </span>
             </h1>
 
             {/* Subheadline */}
             <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl">
-              <strong className="text-white font-semibold">Anurag Podder</strong> — AI &amp; Data Science
-              Engineer with Full-Stack Software Engineering experience. Pursuing an{' '}
+              I build computer-vision and data-governance systems, and I am pursuing an{' '}
               <span className="text-indigo-300 font-medium">
                 MBA in AI &amp; Data Science at TAPMI Manipal
-              </span>
-              , with enterprise engineering experience at{' '}
-              <span className="text-cyan-300 font-medium">Mphasis</span>, project management leadership
-              at <span className="text-emerald-300 font-medium">MEC Tech</span>, and peer-reviewed AI
-              research published in <span className="text-amber-300 font-medium">IJCRT</span>.
+              </span>{' '}
+              (2026–2028). Engineering depth spanning system design, microservices, and algorithms, backed by software engineering experience at{' '}
+              <span className="text-cyan-300 font-medium">Mphasis</span> and published research in{' '}
+              <span className="text-amber-300 font-medium">IJCRT</span>.
             </p>
 
-            {/* Fast-Read Credibility Bar (3 Second Recruiter Signal) */}
+            {/* Fast-Read Credibility Bar: Design, Build, Ship & Run */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
               <div className="px-3.5 py-2.5 rounded-lg bg-slate-900/80 border border-slate-800/90 flex items-center gap-2.5">
                 <Code2 className="w-4 h-4 text-cyan-400 shrink-0" />
                 <div className="text-xs">
-                  <div className="font-semibold text-white">Production Software</div>
-                  <div className="text-slate-400 font-mono text-[11px]">Java · Spring Boot · Python</div>
+                  <div className="font-semibold text-white">Design</div>
+                  <div className="text-slate-400 font-mono text-[11px]">System Design · 3NF RLS</div>
                 </div>
               </div>
               <div className="px-3.5 py-2.5 rounded-lg bg-slate-900/80 border border-slate-800/90 flex items-center gap-2.5">
                 <BrainCircuit className="w-4 h-4 text-indigo-400 shrink-0" />
                 <div className="text-xs">
-                  <div className="font-semibold text-white">AI, Data &amp; DBMS</div>
-                  <div className="text-slate-400 font-mono text-[11px]">YOLOv8 WBF · PostgreSQL 18</div>
+                  <div className="font-semibold text-white">Build</div>
+                  <div className="text-slate-400 font-mono text-[11px]">Spring Boot · YOLO WBF</div>
                 </div>
               </div>
               <div className="px-3.5 py-2.5 rounded-lg bg-slate-900/80 border border-slate-800/90 flex items-center gap-2.5">
-                <Award className="w-4 h-4 text-amber-400 shrink-0" />
+                <Award className="w-4 h-4 text-emerald-400 shrink-0" />
                 <div className="text-xs">
-                  <div className="font-semibold text-white">Published &amp; Business-Ready</div>
-                  <div className="text-slate-400 font-mono text-[11px]">IJCRT2305259 · TAPMI MBA</div>
+                  <div className="font-semibold text-white">Ship &amp; Run</div>
+                  <div className="text-slate-400 font-mono text-[11px]">CI/CD · Unit Tests · CDN</div>
                 </div>
               </div>
             </div>

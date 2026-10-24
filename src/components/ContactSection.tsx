@@ -6,7 +6,6 @@ import {
   FileText,
   Mail,
   MapPin,
-  Phone,
   Send,
 } from 'lucide-react';
 import { GithubIcon as Github, LinkedinIcon as Linkedin } from './BrandIcons';
@@ -20,6 +19,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
   onOpenResumeModal,
 }) => {
   const [copiedEmail, setCopiedEmail] = useState<string | null>(null);
+  const [honeypot, setHoneypot] = useState('');
   const [formState, setFormState] = useState({
     name: '',
     email: '',
@@ -51,7 +51,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
-        body: JSON.stringify(formState),
+        body: JSON.stringify({ ...formState, _gotcha: honeypot }),
       });
       if (response.ok) {
         setSubmitStatus('success');
@@ -77,58 +77,21 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
           <div className="lg:col-span-6 space-y-6">
             <div>
               <div className="font-mono text-xs uppercase tracking-widest text-indigo-400 mb-2">
-                07 / CONTACT &amp; COLLABORATION
+                08 / CONTACT &amp; COLLABORATION
               </div>
               <h2 className="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">
                 Let’s Build Impactful Systems Together
               </h2>
               <p className="text-slate-400 text-sm sm:text-base mt-2 leading-relaxed">
-                Available for AI &amp; Data Science engineering roles, full-stack software
-                engineering opportunities, product strategy collaborations, and research
-                discussions.
+                Currently pursuing an MBA in AI &amp; Data Science at TAPMI Manipal (2026–2028).
+                Open to summer internships (2027), live projects, and full-time roles in AI/ML
+                engineering, data science, and backend engineering.
               </p>
             </div>
 
             {/* Direct Channel Cards */}
             <div className="space-y-3">
-              {/* TAPMI Academic Email */}
-              <div className="p-4 rounded-xl bg-[#090e1c] border border-slate-800 flex items-center justify-between gap-3">
-                <div className="flex items-center gap-3 min-w-0">
-                  <div className="p-2.5 rounded-lg bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 shrink-0">
-                    <Mail className="w-4 h-4" />
-                  </div>
-                  <div className="min-w-0">
-                    <div className="font-mono text-[11px] text-slate-400">
-                      TAPMI Manipal Academic Email
-                    </div>
-                    <a
-                      href={`mailto:${PROFILE_DATA.contacts.academicEmail}`}
-                      className="font-mono text-xs sm:text-sm text-white hover:text-cyan-300 truncate block"
-                    >
-                      {PROFILE_DATA.contacts.academicEmail}
-                    </a>
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => handleCopy(PROFILE_DATA.contacts.academicEmail)}
-                  className="px-2.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 font-mono text-xs text-slate-300 inline-flex items-center gap-1 shrink-0"
-                >
-                  {copiedEmail === PROFILE_DATA.contacts.academicEmail ? (
-                    <>
-                      <Check className="w-3.5 h-3.5 text-emerald-400" />
-                      <span className="text-emerald-300">Copied</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-3.5 h-3.5" />
-                      <span>Copy</span>
-                    </>
-                  )}
-                </button>
-              </div>
-
-              {/* Personal Email */}
+              {/* Personal Email - First */}
               <div className="p-4 rounded-xl bg-[#090e1c] border border-slate-800 flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3 min-w-0">
                   <div className="p-2.5 rounded-lg bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 shrink-0">
@@ -150,6 +113,43 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   className="px-2.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 font-mono text-xs text-slate-300 inline-flex items-center gap-1 shrink-0"
                 >
                   {copiedEmail === PROFILE_DATA.contacts.personalEmail ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-emerald-400" />
+                      <span className="text-emerald-300">Copied</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5" />
+                      <span>Copy</span>
+                    </>
+                  )}
+                </button>
+              </div>
+
+              {/* TAPMI Academic Email - Second */}
+              <div className="p-4 rounded-xl bg-[#090e1c] border border-slate-800 flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="p-2.5 rounded-lg bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 shrink-0">
+                    <Mail className="w-4 h-4" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="font-mono text-[11px] text-slate-400">
+                      TAPMI email
+                    </div>
+                    <a
+                      href={`mailto:${PROFILE_DATA.contacts.academicEmail}`}
+                      className="font-mono text-xs sm:text-sm text-white hover:text-cyan-300 truncate block"
+                    >
+                      {PROFILE_DATA.contacts.academicEmail}
+                    </a>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => handleCopy(PROFILE_DATA.contacts.academicEmail)}
+                  className="px-2.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 font-mono text-xs text-slate-300 inline-flex items-center gap-1 shrink-0"
+                >
+                  {copiedEmail === PROFILE_DATA.contacts.academicEmail ? (
                     <>
                       <Check className="w-3.5 h-3.5 text-emerald-400" />
                       <span className="text-emerald-300">Copied</span>
@@ -211,7 +211,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-mono text-xs font-semibold transition"
               >
                 <FileText className="w-3.5 h-3.5" />
-                <span>Open Executive Résumé</span>
+                <span>View Resume</span>
               </button>
             </div>
           </div>
@@ -227,7 +227,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   Send a Direct Message
                 </h3>
                 <span className="font-mono text-[11px] text-emerald-400">
-                  Formspree Endpoint + Mailto Fallback
+                  Replies within 2 business days
                 </span>
               </div>
 
@@ -246,7 +246,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     required
                     value={formState.name}
                     onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                    placeholder="Recruiter / Engineering Lead"
+                    placeholder="Your name"
                     className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400"
                   />
                 </div>
@@ -307,6 +307,18 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 />
               </div>
 
+              {/* Honeypot Spam Trap */}
+              <input
+                type="text"
+                name="_gotcha"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="hidden"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+              />
+
               <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
                 <button
                   type="submit"
@@ -320,7 +332,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 </button>
 
                 <a
-                  href={`mailto:${PROFILE_DATA.contacts.academicEmail}?subject=${encodeURIComponent(
+                  href={`mailto:${PROFILE_DATA.contacts.personalEmail}?subject=${encodeURIComponent(
                     formState.subject
                   )}&body=${encodeURIComponent(formState.message)}`}
                   className="font-mono text-xs text-slate-400 hover:text-cyan-300 underline underline-offset-4"
@@ -336,14 +348,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
               )}
               {submitStatus === 'error' && (
                 <div className="p-3 rounded-xl bg-amber-500/15 border border-amber-500/30 font-mono text-xs text-amber-200">
-                  Notice: Network form endpoint unreachable from this environment. Please click{' '}
+                  Couldn&apos;t send your message right now. Please email me directly at{' '}
                   <a
-                    href={`mailto:${PROFILE_DATA.contacts.academicEmail}`}
+                    href={`mailto:${PROFILE_DATA.contacts.personalEmail}`}
                     className="underline font-bold"
                   >
-                    {PROFILE_DATA.contacts.academicEmail}
-                  </a>{' '}
-                  to email directly.
+                    {PROFILE_DATA.contacts.personalEmail}
+                  </a>.
                 </div>
               )}
             </form>

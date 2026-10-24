@@ -1,23 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Activity,
-  AlertTriangle,
-  CheckCircle2,
-  Cpu,
-  Database,
-  Eye,
-  Filter,
-  Layers,
-  Lock,
-  Play,
-  Radar,
-  RefreshCw,
-  Shield,
-  Sliders,
-  Sparkles,
-  Terminal,
-  Zap,
-} from 'lucide-react';
+import { Sliders, Shield, Database, Radar, Zap } from 'lucide-react';
 import { InteractiveDemoType, Project } from '../types/portfolio';
 
 interface InteractiveProjectLabProps {
@@ -300,7 +282,6 @@ const AETHER_CITIES = [
 export const InteractiveProjectLab: React.FC<InteractiveProjectLabProps> = ({
   demoType,
   project,
-  compact = false,
 }) => {
   // RoadVision state
   const [rvScenarioIdx, setRvScenarioIdx] = useState(0);

@@ -1,20 +1,7 @@
 import React, { useState } from 'react';
-import {
-  Activity,
-  CheckCircle2,
-  Code2,
-  Cpu,
-  Database,
-  GitBranch,
-  Layers,
-  Network,
-  Search,
-  Server,
-  ShieldCheck,
-  Terminal,
-  Zap,
-} from 'lucide-react';
+import { Layers } from 'lucide-react';
 import { PORTFOLIO_DATA_STRUCTURES, PROJECTS_CATALOGUE } from '../data/portfolioData';
+import { PROJECT_ALGORITHMS } from '../data/engineeringData';
 import {
   NORMALIZED_SEARCH_INDEX,
   PROJECT_BY_SLUG,
@@ -28,7 +15,7 @@ interface EngineeringApproachSectionProps {
 const ARCHITECTURE_LAYERS = [
   {
     layer: '01 · Presentation Layer',
-    tech: 'React 18 · Tailwind CSS · Accessible Dialogs · 60 FPS Motion',
+    tech: 'React 18 · Tailwind CSS · Accessible Dialogs · Reduced-Motion Support',
     responsibility:
       'Responsive dark-engineering UI, keyboard navigation (⌘K), transform/opacity hardware acceleration, and reduced-motion support.',
   },
@@ -46,13 +33,13 @@ const ARCHITECTURE_LAYERS = [
   },
   {
     layer: '04 · GitHub & Live Demo Integration',
-    tech: 'Verified Repository Links · Isomorphic Client/Edge Sandboxes',
+    tech: 'GitHub Repositories · In-Browser Demo Labs',
     responsibility:
-      'Direct links to live deployments, interactive in-browser labs (RoadVision WBF, DataLens RLS, Rooted 3NF, AETHER DSA).',
+      "Links to each project's repository and interactive in-browser demos (RoadVision, DataLens, Rooted, BLUME, AETHER). Demos run on sample data.",
   },
   {
     layer: '05 · Delivery & Engineering Quality',
-    tech: 'Vite Production Bundle · Vitest Suite · GitHub Actions CI/CD',
+    tech: 'Vite · Node Test Runner · GitHub Actions CI/CD',
     responsibility:
       'Static CDN delivery with zero-config GitHub Pages & Vercel compatibility, automated TypeScript checks, and unit tests.',
   },
@@ -75,14 +62,14 @@ export const EngineeringApproachSection: React.FC<EngineeringApproachSectionProp
         {/* Section Heading */}
         <div className="mb-12">
           <div className="font-mono text-xs uppercase tracking-widest text-cyan-400 mb-2">
-            06 / ENGINEERING APPROACH, SYSTEM DESIGN &amp; DATA STRUCTURES
+            07 / SYSTEM DESIGN &amp; DATA STRUCTURES
           </div>
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">
             Pragmatic System Architecture &amp; Algorithmic Rigor
           </h2>
           <p className="text-slate-400 text-sm sm:text-base mt-2 max-w-3xl">
             Good engineering means matching architectural complexity to actual system requirements:
-            using clean $O(1)$ data structures and static CDN delivery for content-driven web
+            using clean O(1) data structures and static CDN delivery for content-driven web
             experiences, while deploying multi-service FastAPI/Spring Boot backends and PostgreSQL
             18 schemas where real domain workloads demand them.
           </p>
@@ -123,7 +110,7 @@ export const EngineeringApproachSection: React.FC<EngineeringApproachSectionProp
             </div>
           </div>
 
-          {/* Right Column: Architectural Decision Record (Microservices vs Static Content) & Live O(1) Map Inspector */}
+          {/* Right Column: Architectural Decision Record & Live O(1) Map Inspector */}
           <div className="lg:col-span-5 flex flex-col justify-between gap-6">
             {/* ADR Card */}
             <div className="rounded-2xl bg-[#090e1c]/95 border border-slate-800/90 p-6">
@@ -141,7 +128,7 @@ export const EngineeringApproachSection: React.FC<EngineeringApproachSectionProp
               </p>
               <div className="space-y-2 text-xs font-mono">
                 <div className="p-2.5 rounded-lg bg-emerald-950/30 border border-emerald-500/30 text-emerald-200">
-                  ✓ Core Portfolio: Static CDN delivery + O(1) client Map/Set indices for zero-ms navigation.
+                  ✓ Core Portfolio: Static CDN delivery + O(1) client Map/Set indices for instant navigation.
                 </div>
                 <div className="p-2.5 rounded-lg bg-cyan-950/30 border border-cyan-500/30 text-cyan-200">
                   ✓ Domain Projects (RoadVision AI, DataLens, AETHER): Multi-service Python FastAPI &amp; Java Spring Boot backends where real CV inference, RLS/CLS governance, and psychrometric engines justify service isolation.
@@ -202,14 +189,45 @@ export const EngineeringApproachSection: React.FC<EngineeringApproachSectionProp
           </div>
         </div>
 
+        {/* Algorithms & Data Structures in My Projects Table */}
+        <div className="rounded-2xl bg-[#090e1c]/95 border border-slate-800/90 p-6 sm:p-8 mb-12">
+          <h3 className="font-display text-xl font-bold text-white mb-4">
+            Algorithms &amp; Data Structures in My Projects
+          </h3>
+          <div className="overflow-x-auto rounded-xl border border-slate-800">
+            <table className="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr className="bg-slate-900/95 border-b border-slate-800 font-mono text-slate-400">
+                  <th className="p-3.5">Problem</th>
+                  <th className="p-3.5">Structure / Algorithm</th>
+                  <th className="p-3.5">Signature</th>
+                  <th className="p-3.5">Complexity</th>
+                  <th className="p-3.5">Why</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-800/80 bg-[#070b14]">
+                {PROJECT_ALGORITHMS.map((a) => (
+                  <tr key={a.requirement} className="text-slate-300">
+                    <td className="p-3.5 font-semibold text-white">{a.requirement}</td>
+                    <td className="p-3.5 font-mono text-cyan-300">{a.structure}</td>
+                    <td className="p-3.5 font-mono text-indigo-300">{a.typescriptSignature}</td>
+                    <td className="p-3.5 font-mono text-emerald-300">{a.complexity}</td>
+                    <td className="p-3.5 text-slate-400">{a.rationale}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
         {/* Data Structures Specification Table */}
         <div className="rounded-2xl bg-[#090e1c]/95 border border-slate-800/90 p-6 sm:p-8">
           <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
             <h3 className="font-display text-xl font-bold text-white">
-              Data Structures Implemented in This Portfolio (`src/lib/catalogueEngine.ts`)
+              Data Structures Implemented in This Portfolio (<code className="font-mono text-cyan-300">src/lib/catalogueEngine.ts</code>)
             </h3>
             <span className="font-mono text-xs text-emerald-400">
-              Verified by Automated Vitest Suite
+              Covered by automated unit tests
             </span>
           </div>
 
@@ -242,4 +260,3 @@ export const EngineeringApproachSection: React.FC<EngineeringApproachSectionProp
     </section>
   );
 };
-

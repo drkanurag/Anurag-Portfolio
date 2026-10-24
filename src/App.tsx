@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CommandPalette } from './components/CommandPalette';
 import { ContactSection } from './components/ContactSection';
 import { EngineeringApproachSection } from './components/EngineeringApproachSection';
@@ -10,6 +10,7 @@ import { ProjectCaseStudyPage } from './components/ProjectCaseStudyPage';
 import { ProjectsSection } from './components/ProjectsSection';
 import { ResearchSection } from './components/ResearchSection';
 import { ResumeModal } from './components/ResumeModal';
+import { SdlcSection } from './components/SdlcSection';
 import { TechnicalExpertiseSection } from './components/TechnicalExpertiseSection';
 import { getProjectBySlug, STATIC_NAV_ROUTES } from './lib/catalogueEngine';
 import { ProjectDomain, ProjectSlug } from './types/portfolio';
@@ -21,13 +22,29 @@ export function App() {
   const [selectedTechTag, setSelectedTechTag] = useState<string | null>(null);
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
   const [resumeModalOpen, setResumeModalOpen] = useState(false);
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    try {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'light' || saved === 'dark') return saved;
+    } catch {
+      /* storage unavailable */
+    }
+    return 'dark';
+  });
   const [reducedMotion, setReducedMotion] = useState<boolean>(() => {
     if (typeof window !== 'undefined' && window.matchMedia) {
       return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     }
     return false;
   });
+
+  // Dynamic document title based on active case study
+  useEffect(() => {
+    const project = getProjectBySlug(activeCaseStudySlug);
+    document.title = project
+      ? `${project.title} — Case Study | Anurag Podder`
+      : 'Anurag Podder — AI & Data Science Engineer';
+  }, [activeCaseStudySlug]);
 
   // Sync URL hash for shareable Case Study pages (#/projects/:slug)
   useEffect(() => {
@@ -62,13 +79,18 @@ export function App() {
     return () => window.removeEventListener('keydown', onKeyDown);
   }, []);
 
-  // Theme class sync
+  // Theme class sync & local persistence
   useEffect(() => {
     const root = document.documentElement;
     if (theme === 'light') {
       root.classList.add('theme-editorial-light');
     } else {
       root.classList.remove('theme-editorial-light');
+    }
+    try {
+      localStorage.setItem('theme', theme);
+    } catch {
+      /* ignore */
     }
   }, [theme]);
 
@@ -198,6 +220,8 @@ export function App() {
 
             <ResearchSection onOpenCaseStudy={handleOpenCaseStudy} />
 
+            <SdlcSection onOpenCaseStudy={handleOpenCaseStudy} />
+
             <EngineeringApproachSection onOpenCaseStudy={handleOpenCaseStudy} />
 
             <ContactSection onOpenResumeModal={() => setResumeModalOpen(true)} />
@@ -224,4 +248,3 @@ export function App() {
 }
 
 export default App;
-

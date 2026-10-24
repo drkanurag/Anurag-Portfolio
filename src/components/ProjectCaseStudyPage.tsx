@@ -5,18 +5,13 @@ import {
   ArrowRight,
   BookOpen,
   CheckCircle2,
-  Cpu,
   ExternalLink,
-  FileCode2,
-  Layers,
-  ShieldAlert,
-  Sparkles,
-  Wrench,
 } from 'lucide-react';
 import { GithubIcon as Github } from './BrandIcons';
 import { PROJECTS_CATALOGUE } from '../data/portfolioData';
 import { Project, ProjectSlug } from '../types/portfolio';
 import { InteractiveProjectLab } from './InteractiveProjectLab';
+import { CaseStudyEngineering } from './CaseStudyEngineering';
 
 interface ProjectCaseStudyPageProps {
   project: Project;
@@ -113,6 +108,15 @@ export const ProjectCaseStudyPage: React.FC<ProjectCaseStudyPageProps> = ({
                 <div className="font-mono text-[11px] text-slate-400">{m.label}</div>
                 <div className="font-display text-xl font-bold text-white mt-1">{m.value}</div>
                 <div className="text-xs text-slate-400 mt-1">{m.detail}</div>
+                <span
+                  className={`inline-block mt-2 px-1.5 py-0.5 rounded border font-mono text-[10px] ${
+                    m.verified
+                      ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30'
+                      : 'bg-amber-500/10 text-amber-300 border-amber-500/30'
+                  }`}
+                >
+                  {m.verified ? 'Measured' : 'Target / estimate'}
+                </span>
               </div>
             ))}
           </div>
@@ -126,7 +130,7 @@ export const ProjectCaseStudyPage: React.FC<ProjectCaseStudyPageProps> = ({
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-xs font-semibold transition shadow"
               >
-                <span>Launch Live Application</span>
+                <span>Open Live Demo</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
             )}
@@ -137,7 +141,7 @@ export const ProjectCaseStudyPage: React.FC<ProjectCaseStudyPageProps> = ({
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-cyan-500/40 text-cyan-300 font-mono text-xs transition"
               >
-                <span>{project.links.secondaryDemoLabel || 'Secondary Mirror'}</span>
+                <span>{project.links.secondaryDemoLabel || 'Alternate Link'}</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
             )}
@@ -149,7 +153,7 @@ export const ProjectCaseStudyPage: React.FC<ProjectCaseStudyPageProps> = ({
                 className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-mono text-xs font-semibold transition"
               >
                 <BookOpen className="w-3.5 h-3.5" />
-                <span>View IJCRT Publication</span>
+                <span>View Paper (IJCRT)</span>
               </a>
             )}
             {project.links.paperPdfUrl && (
@@ -200,14 +204,18 @@ export const ProjectCaseStudyPage: React.FC<ProjectCaseStudyPageProps> = ({
               <p className="text-sm text-slate-300 leading-relaxed mb-4">
                 {caseStudy.problem.context}
               </p>
-              <ul className="space-y-2">
+              <div className="space-y-2">
+                <div className="font-mono text-xs uppercase text-slate-400">Core Constraints:</div>
                 {caseStudy.problem.painPoints.map((pt) => (
-                  <li key={pt} className="flex items-start gap-2 text-xs text-slate-300">
-                    <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                  <div
+                    key={pt}
+                    className="flex items-start gap-2 text-xs text-slate-300 p-2 rounded-lg bg-slate-900/80 border border-slate-800"
+                  >
+                    <AlertTriangle className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
                     <span>{pt}</span>
-                  </li>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </section>
 
             <section className="rounded-2xl bg-[#090e1c] border border-slate-800/90 p-6">
@@ -220,113 +228,127 @@ export const ProjectCaseStudyPage: React.FC<ProjectCaseStudyPageProps> = ({
               <p className="text-sm text-slate-300 leading-relaxed mb-4">
                 {caseStudy.solution.summary}
               </p>
-              <ul className="space-y-2">
-                {caseStudy.solution.keyCapabilities.map((cap) => (
-                  <li key={cap} className="flex items-start gap-2 text-xs text-slate-300">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                    <span>{cap}</span>
-                  </li>
+              <div className="space-y-2">
+                <div className="font-mono text-xs uppercase text-slate-400">Implemented Deliverables:</div>
+                {caseStudy.solution.keyCapabilities.map((feat) => (
+                  <div
+                    key={feat}
+                    className="flex items-start gap-2 text-xs text-slate-300 p-2 rounded-lg bg-slate-900/80 border border-slate-800"
+                  >
+                    <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
+                    <span>{feat}</span>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </section>
           </div>
 
-          {/* 03. System Architecture */}
+          {/* 03. Architecture & Data Flow */}
           <section className="rounded-2xl bg-[#090e1c] border border-slate-800/90 p-6 sm:p-8">
             <div className="font-mono text-xs uppercase tracking-widest text-indigo-400 mb-2">
-              03 / SYSTEM ARCHITECTURE &amp; COMPONENT INTERACTION
+              03 / SYSTEM ARCHITECTURE &amp; DATA FLOW
             </div>
-            <h2 className="font-display text-2xl font-bold text-white mb-2">
-              {caseStudy.architecture.patternName}
-            </h2>
+            <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+              <h2 className="font-display text-2xl font-bold text-white">
+                {caseStudy.architecture.patternName}
+              </h2>
+              <span className="font-mono text-xs text-cyan-300 bg-slate-900 px-3 py-1 rounded-lg border border-slate-800">
+                Data Pipeline Verification
+              </span>
+            </div>
             <p className="text-sm text-slate-300 leading-relaxed mb-6">
               {caseStudy.architecture.summary}
             </p>
 
-            {/* Architecture Nodes Diagram */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 mb-6">
-              {caseStudy.architecture.nodes.map((node, index) => (
+            {/* Architecture Node Map */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+              {caseStudy.architecture.nodes.map((node) => (
                 <div
                   key={node.id}
-                  className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 relative flex flex-col justify-between"
+                  className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800"
                 >
-                  <div>
-                    <div className="flex items-center justify-between text-[10px] font-mono text-slate-400 mb-1">
-                      <span>NODE 0{index + 1}</span>
-                      <span className="uppercase text-cyan-400">{node.layer}</span>
-                    </div>
-                    <div className="font-display text-sm font-bold text-white">{node.label}</div>
-                    <div className="text-xs text-slate-400 mt-1">{node.sublabel}</div>
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-xs font-semibold text-white">{node.label}</span>
+                    <span className="font-mono text-[10px] text-cyan-400 uppercase">
+                      {node.layer}
+                    </span>
                   </div>
                   {node.portOrTech && (
-                    <div className="mt-3 pt-2 border-t border-slate-800 font-mono text-[11px] text-indigo-300">
-                      {node.portOrTech}
-                    </div>
+                    <div className="font-mono text-[11px] text-indigo-300 mt-1">{node.portOrTech}</div>
                   )}
+                  <p className="text-[11px] text-slate-400 mt-1">{node.sublabel}</p>
                 </div>
               ))}
             </div>
 
-            {/* Execution Flows */}
-            <div className="space-y-2.5">
-              {caseStudy.architecture.flows.map((flow) => (
-                <div
-                  key={flow.step}
-                  className="p-3.5 rounded-xl bg-slate-950/90 border border-slate-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2"
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="px-2 py-0.5 rounded bg-indigo-500/20 border border-indigo-500/40 font-mono text-xs text-indigo-300 font-bold">
-                      {flow.step}
+            {/* Step-by-Step Flow Pipeline */}
+            <div className="space-y-2">
+              <div className="font-mono text-xs uppercase text-slate-400 mb-1">
+                Data Flow Execution Pipeline:
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                {caseStudy.architecture.flows.map((step) => (
+                  <div
+                    key={step.step}
+                    className="p-3 rounded-xl bg-slate-900/60 border border-slate-800 flex items-start gap-2.5"
+                  >
+                    <span className="font-mono text-xs font-bold text-cyan-400 shrink-0 w-6 h-6 rounded-full bg-cyan-950/60 border border-cyan-800 flex items-center justify-center">
+                      {step.step}
                     </span>
                     <div>
-                      <div className="font-mono text-xs text-white font-semibold">
-                        {flow.from} <span className="text-cyan-400">→</span> {flow.to}
+                      <div className="font-mono text-xs font-semibold text-white">
+                        {step.from} → {step.to}
                       </div>
-                      <div className="text-xs text-slate-400 mt-0.5">{flow.description}</div>
+                      <div className="text-[11px] text-indigo-300 font-mono mt-0.5">
+                        {step.protocol}
+                      </div>
+                      <div className="text-[11px] text-slate-400 mt-0.5">{step.description}</div>
                     </div>
                   </div>
-                  <span className="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 font-mono text-[11px] text-cyan-300 shrink-0">
-                    {flow.protocol}
-                  </span>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </section>
 
-          {/* 04. Technology & Rationale */}
+          {/* 04. Technology Decisions Table */}
           <section className="rounded-2xl bg-[#090e1c] border border-slate-800/90 p-6 sm:p-8">
             <div className="font-mono text-xs uppercase tracking-widest text-cyan-400 mb-2">
-              04 / TECHNOLOGY STACK &amp; ENGINEERING RATIONALE
+              04 / TECHNOLOGY EVALUATION &amp; DECISION MATRIX
             </div>
             <h2 className="font-display text-2xl font-bold text-white mb-4">
-              What Was Used — And Why
+              Why These Specific Tools &amp; Libraries
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {caseStudy.technologyDecisions.map((td) => (
-                <div
-                  key={td.technology}
-                  className="p-4 rounded-xl bg-slate-900/85 border border-slate-800"
-                >
-                  <div className="font-mono text-[11px] text-indigo-400 uppercase mb-1">
-                    {td.category}
-                  </div>
-                  <h3 className="font-display text-base font-bold text-white mb-2">
-                    {td.technology}
-                  </h3>
-                  <p className="text-xs text-slate-300 leading-relaxed">{td.rationale}</p>
-                </div>
-              ))}
+
+            <div className="overflow-x-auto rounded-xl border border-slate-800">
+              <table className="w-full text-left border-collapse text-xs">
+                <thead>
+                  <tr className="bg-slate-900/95 border-b border-slate-800 font-mono text-slate-400">
+                    <th className="p-3.5">Technology</th>
+                    <th className="p-3.5">Category</th>
+                    <th className="p-3.5">Decision Rationale &amp; Trade-off</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-800/80 bg-[#070b14]">
+                  {caseStudy.technologyDecisions.map((td) => (
+                    <tr key={td.technology} className="text-slate-300">
+                      <td className="p-3.5 font-mono font-semibold text-white">{td.technology}</td>
+                      <td className="p-3.5 font-mono text-emerald-300">{td.category}</td>
+                      <td className="p-3.5 text-slate-300">{td.rationale}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </section>
 
-          {/* 05. Engineering Challenges & 06. Verified Results */}
+          {/* 05. Engineering Challenges & 06. Measured Results */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             <section className="lg:col-span-7 rounded-2xl bg-[#090e1c] border border-slate-800/90 p-6">
               <div className="font-mono text-xs uppercase tracking-widest text-amber-400 mb-2">
-                05 / ENGINEERING CHALLENGES &amp; DESIGN DECISIONS
+                05 / ENGINEERING CHALLENGES &amp; HARD BUGS
               </div>
               <h2 className="font-display text-xl font-bold text-white mb-4">
-                What Required Careful Engineering
+                What Broke &amp; How It Was Resolved
               </h2>
               <div className="space-y-4">
                 {caseStudy.engineeringChallenges.map((ch) => (
@@ -357,7 +379,7 @@ export const ProjectCaseStudyPage: React.FC<ProjectCaseStudyPageProps> = ({
                   06 / MEASURED RESULTS &amp; OUTCOMES
                 </div>
                 <h2 className="font-display text-xl font-bold text-white mb-3">
-                  Verified Performance
+                  Results
                 </h2>
                 <p className="text-sm text-slate-300 leading-relaxed mb-4">
                   {caseStudy.results.summary}
@@ -371,6 +393,15 @@ export const ProjectCaseStudyPage: React.FC<ProjectCaseStudyPageProps> = ({
                       <div>
                         <div className="font-mono text-xs text-white font-semibold">{m.label}</div>
                         <div className="text-[11px] text-slate-400">{m.detail}</div>
+                        <span
+                          className={`inline-block mt-1 px-1.5 py-0.5 rounded border font-mono text-[10px] ${
+                            m.verified
+                              ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30'
+                              : 'bg-amber-500/10 text-amber-300 border-amber-500/30'
+                          }`}
+                        >
+                          {m.verified ? 'Measured' : 'Target / estimate'}
+                        </span>
                       </div>
                       <span className="font-mono text-sm font-bold text-emerald-400">
                         {m.value}
@@ -381,6 +412,9 @@ export const ProjectCaseStudyPage: React.FC<ProjectCaseStudyPageProps> = ({
               </div>
             </section>
           </div>
+
+          {/* New Section: SDLC, System Design & Microservices, and Algorithms */}
+          <CaseStudyEngineering caseStudy={caseStudy} />
 
           {/* 07. Honest Limitations & Next Steps */}
           <section className="rounded-2xl bg-[#090e1c] border border-slate-800/90 p-6 sm:p-8">

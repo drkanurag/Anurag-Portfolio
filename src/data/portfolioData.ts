@@ -10,14 +10,14 @@ export const PROFILE_DATA = {
   name: 'Anurag Podder',
   handle: 'drkanurag',
   eyebrow: 'AI & DATA SCIENCE · SOFTWARE ENGINEERING',
-  positioningTitle: 'AI & Data Science Engineer with Full-Stack Software Engineering Experience',
-  headline: 'Building intelligent systems that solve real-world problems.',
+  positioningTitle: 'AI & Data Science Engineer with Java/Spring Backend Foundation',
+  headline: 'AI & Data Science engineer with a Java/Spring backend foundation.',
   subheadline:
-    'MBA candidate in AI & Data Science at TAPMI Manipal. Software engineer working across AI, computer vision, data analytics, and enterprise backend systems.',
+    'I build computer-vision and data-governance systems, and I am pursuing an MBA in AI & Data Science at TAPMI Manipal. Engineering depth across system design, microservices, and algorithms.',
   executiveSummary:
-    'Software Engineer and AI Researcher with hands-on experience building enterprise-grade Java & Spring Boot applications at Mphasis, real-time Deep Learning & Computer Vision systems (RoadVision AI, BLUME), and full-stack PostgreSQL analytics platforms (DataLens, Rooted). Published author in peer-reviewed AI surveillance research (IJCRT2305259). Currently pursuing an MBA in Artificial Intelligence & Data Science at T. A. Pai Management Institute (TAPMI), Manipal (AACSB & AMBA Accredited) to bridge production engineering with executive business strategy.',
+    'AI & Data Science engineer with a Java/Spring backend foundation. Hands-on experience building enterprise-grade Java & Spring Boot applications at Mphasis, real-time Computer Vision systems (RoadVision AI, BLUME), and PostgreSQL data platforms (DataLens, Rooted). Co-author of peer-reviewed AI surveillance research in IJCRT (IJCRT2305259). Currently pursuing an MBA in Artificial Intelligence & Data Science at T. A. Pai Management Institute (TAPMI), Manipal (AACSB & AMBA Accredited, 2026–2028).',
   location: 'Manipal, Karnataka · New Delhi, India',
-  availability: 'Open to AI/Data Science Engineering, Product Engineering & Full-Stack Software Roles',
+  availability: 'Open to summer internships (2027), live projects, and full-time engineering roles in AI/ML, data science, and backend engineering',
   contacts: {
     academicEmail: 'anurag1.tapmimpl2026@learner.manipal.edu',
     personalEmail: 'anurag.podder@gmail.com',
@@ -306,6 +306,131 @@ export const PROJECTS_CATALOGUE: readonly Project[] = [
           },
         ],
       },
+      sdlc: [
+        {
+          phase: 'Requirements',
+          status: 'Done',
+          summary:
+            'Defined distress categories based on ASTM D6433 standards (alligator cracking, longitudinal cracking, potholes, rutting). Established <50ms CPU latency budget for real-time survey.',
+        },
+        {
+          phase: 'Design',
+          status: 'Done',
+          summary:
+            'Designed dual-model ensemble pipeline combining YOLOv8n with a fine-tuned RDD2022 specialist model using Weighted Boxes Fusion (WBF), paired with morphological Black-Hat filtering for crack width estimation.',
+        },
+        {
+          phase: 'Implementation',
+          status: 'Done',
+          summary:
+            'Implemented FastAPI model inference service with ONNX Runtime CPU optimization, Python morphological analysis via OpenCV, and automated ASTM D6433 Deduct Value calculation.',
+        },
+        {
+          phase: 'Testing',
+          status: 'Done',
+          summary:
+            'Evaluated on 1,200 Indian road distress test images, measuring precision, recall, and intersection-over-union (IoU) across defect classes.',
+        },
+        {
+          phase: 'CI/CD',
+          status: 'Done',
+          summary:
+            'Automated linting and test execution in GitHub Actions on every pull request.',
+        },
+        {
+          phase: 'Deployment',
+          status: 'Done',
+          summary:
+            'Docker Compose configuration packaging the 5 microservices (Gateway, Inference, Morphological, PCI Scoring, and GIS Export) for reproducible on-premise execution.',
+        },
+        {
+          phase: 'Monitoring',
+          status: 'Designed only',
+          summary:
+            'Prometheus inference latency histograms and Prometheus metrics endpoints designed; currently evaluated using local profiling.',
+        },
+        {
+          phase: 'Maintenance',
+          status: 'Not applicable',
+          summary: 'Research and portfolio engineering system.',
+        },
+      ],
+      systemDesign: {
+        requirements: {
+          functional: [
+            'Ingest road imagery and return defect bounding boxes, confidence scores, and ASTM D6433 categories',
+            'Compute Morphological Black-Hat fissure density masks to separate shallow stains from structural asphalt cracks',
+            'Calculate Pavement Condition Index (PCI 0–100) using Deduct Values and distress density',
+          ],
+          nonFunctional: [
+            '< 50 ms per frame CPU inference latency on standard x86 hardware (Intel Core i7, 640x640)',
+            'Robustness against varying sunlight angles, road shadows, and asphalt discolorations',
+            'Stateless service nodes for horizontal scaling during municipal road network batch surveys',
+          ],
+        },
+        dataModel:
+          'Structured JSON schema: survey_session, frames, detections (box, confidence, label, area_sqm), deduct_values, and calculated_pci_score.',
+        apiDesign: [
+          'POST /api/v1/detect — Accepts multipart image upload, returns fused bounding boxes and severity metrics',
+          'POST /api/v1/pci/score — Calculates PCI score and repair priority from array of detected distresses',
+          'GET /api/v1/health — Microservice health probe reporting ONNX model warmup status',
+        ],
+        scaling: [
+          'Batch processing queue (Celery + Redis) for offline municipal video feed processing',
+          'Model quantization (INT8 via ONNX Runtime) reducing model memory footprint from 45MB to 12MB',
+          'Dynamic GPU autoscaling pool for high-throughput city-scale road audit runs',
+        ],
+        failureHandling: [
+          'Fallback to single YOLOv8n detector if specialist model crashes or times out (>150ms)',
+          'Automated image validity check rejecting overexposed or black frames before running inference',
+        ],
+        tradeoffs: [
+          {
+            decision: 'Weighted Boxes Fusion (WBF) vs Non-Maximum Suppression (NMS)',
+            chosen: 'Weighted Boxes Fusion with confidence weighting',
+            rejected: 'Standard greedy Non-Maximum Suppression',
+            reason:
+              'NMS greedily discards adjacent overlapping boxes, erroneously dropping multi-crack boundaries. WBF averages overlapping coordinates weighted by model confidence, delivering +4.8% mAP on compound road cracks.',
+          },
+        ],
+        services: [
+          {
+            name: 'API Gateway',
+            responsibility: 'Request validation, rate limiting, and survey session tracking',
+            ownsData: 'Survey metadata',
+            exposes: 'HTTPS :8000',
+            techStack: 'FastAPI / Uvicorn',
+          },
+          {
+            name: 'Inference Service (WBF Ensemble)',
+            responsibility: 'Runs dual ONNX models and fuses detections',
+            ownsData: 'Detection bounding boxes and confidence tensors',
+            exposes: 'HTTP :8001 / gRPC',
+            techStack: 'Python / ONNX Runtime / NumPy',
+          },
+          {
+            name: 'Morphological Analysis Service',
+            responsibility: 'Black-Hat transform and crack width pixel segmentation',
+            ownsData: 'Binary fissure masks and crack density metrics',
+            exposes: 'HTTP :8002',
+            techStack: 'OpenCV / NumPy',
+          },
+          {
+            name: 'ASTM D6433 Scoring Service',
+            responsibility: 'Calculates Deduct Values and final PCI score (0-100)',
+            ownsData: 'PCI scores and maintenance recommendations',
+            exposes: 'HTTP :8003',
+            techStack: 'Python / SciPy',
+          },
+          {
+            name: 'GIS Export Service',
+            responsibility: 'Generates GeoJSON heatmaps for municipal GIS systems',
+            ownsData: 'Exported GeoJSON layers',
+            exposes: 'HTTP :8004',
+            techStack: 'GeoPandas / Shapely',
+          },
+        ],
+      },
     },
   },
   {
@@ -517,6 +642,139 @@ export const PROJECTS_CATALOGUE: readonly Project[] = [
           },
         ],
       },
+      sdlc: [
+        {
+          phase: 'Requirements',
+          status: 'Done',
+          summary:
+            'Defined role boundaries for Global Data Foundation (GDF) vs. regional HRBPs (KOL, MUM, DEL, BLR, HYD, CHN, PUN, GUR). Masked compensation columns from unauthorized roles.',
+        },
+        {
+          phase: 'Design',
+          status: 'Done',
+          summary:
+            'Architected a 6-service mesh separating ingestion, quality remediation, governance policy enforcement, analytics aggregation, and executive reporting.',
+        },
+        {
+          phase: 'Implementation',
+          status: 'Done',
+          summary:
+            'Developed modular microservices with server-side RLS/CLS policy checks, client dashboard in React/TypeScript, and reproducible sample datasets.',
+        },
+        {
+          phase: 'Testing',
+          status: 'Done',
+          summary:
+            'Validated row-level isolation per HRBP persona, ensuring regional users cannot view out-of-scope employee compensation or records.',
+        },
+        {
+          phase: 'CI/CD',
+          status: 'Done',
+          summary:
+            'GitHub Actions pipeline verifying TypeScript compilation, linting, and automated deployment.',
+        },
+        {
+          phase: 'Deployment',
+          status: 'Done',
+          summary:
+            'Docker Compose deployment for multi-service local testing; GitHub Pages client preview with mock service workers.',
+        },
+        {
+          phase: 'Monitoring',
+          status: 'Designed only',
+          summary:
+            'Structured logging and query execution latency monitoring designed for service endpoints; not hooked to a production APM.',
+        },
+        {
+          phase: 'Maintenance',
+          status: 'Not applicable',
+          summary: 'Portfolio showcase project; no production users requiring SLA maintenance.',
+        },
+      ],
+      systemDesign: {
+        requirements: {
+          functional: [
+            "Serve workforce analytics strictly scoped to the authenticated user's governance role",
+            'Row-level security (RLS): regional HRBPs view only employees in their metro site',
+            'Column-level security (CLS): salary and performance bands masked for unauthorized tiers',
+            'Global View (GDF) aggregated cross-site analysis and data quality scoring',
+          ],
+          nonFunctional: [
+            'Sub-100ms response time for pre-aggregated multi-dimension queries on standard nodes',
+            'Service resilience: analytics service gracefully degrades to cached summaries if quality engine is offline',
+            'Zero client-side trust: security policies evaluated and enforced server-side on every request',
+          ],
+        },
+        dataModel:
+          'Normalized relational schema: organizations, sites, departments, employees, compensation_records, and governance_audit_logs with foreign key referential integrity.',
+        apiDesign: [
+          'GET /api/v1/analytics/headcount — Returns site-scoped headcount summary with JWT role validation',
+          'GET /api/v1/employees — Cursor-paginated employee list with RLS filtering and dynamic column masking',
+          'POST /api/v1/governance/audit — Records all permission evaluations and role-override requests',
+        ],
+        scaling: [
+          'Redis cluster for caching regional aggregation rollups (TTL: 15 minutes)',
+          'Read replicas for the employee database to isolate analytical reporting from operational writes',
+          'Asynchronous ingestion queues (Kafka/RabbitMQ) for batch HRIS data sync',
+        ],
+        failureHandling: [
+          'Circuit breaker on the quality remediation service; defaults to raw data with a prominent data-freshness warning',
+          'Expiring JWT bearer tokens with deterministic error responses (HTTP 401/403) and clean client fallbacks',
+        ],
+        tradeoffs: [
+          {
+            decision: 'Split into microservices vs single monolith',
+            chosen: '6 modular microservices with bounded domains',
+            rejected: 'Monolithic single-process web app',
+            reason:
+              'Isolates security governance and compliance audit rules from high-throughput analytical query processing, allowing independent scaling of reporting nodes.',
+          },
+        ],
+        services: [
+          {
+            name: 'Gateway & Auth Service',
+            responsibility: 'JWT validation, rate limiting, and request routing to domain services',
+            ownsData: 'User session tokens and role metadata',
+            exposes: 'HTTPS :8080 (REST / OAuth2)',
+            techStack: 'Spring Cloud Gateway / Node.js Express',
+          },
+          {
+            name: 'Governance & Policy Service',
+            responsibility: 'RLS/CLS rule evaluation and dynamic SQL predicate generation',
+            ownsData: 'Role-permission matrix and column masking rules',
+            exposes: 'gRPC :50051 / REST :8081',
+            techStack: 'Java Spring Boot / PostgreSQL',
+          },
+          {
+            name: 'Employee Data Service',
+            responsibility: 'CRUD operations on employee core records and organizational hierarchy',
+            ownsData: 'employees, departments, locations',
+            exposes: 'REST :8082',
+            techStack: 'Spring Boot / PostgreSQL 18',
+          },
+          {
+            name: 'Compensation & Payroll Service',
+            responsibility: 'Salary bands, equity grants, and compensation percentile calculations',
+            ownsData: 'compensation_records, pay_bands',
+            exposes: 'REST :8083 (restricted access)',
+            techStack: 'Spring Boot / Encrypted DB storage',
+          },
+          {
+            name: 'Quality & Remediation Service',
+            responsibility: 'Detecting missing data, duplicate entries, and inconsistent employee statuses',
+            ownsData: 'data_quality_anomalies, remediation_tasks',
+            exposes: 'REST :8084',
+            techStack: 'Python FastAPI / Pandas',
+          },
+          {
+            name: 'Analytics & Aggregation Service',
+            responsibility: 'High-performance rollup metrics, retention curves, and diversity reports',
+            ownsData: 'materialized_views, aggregation_cache',
+            exposes: 'REST :8085',
+            techStack: 'Python FastAPI / DuckDB / Redis',
+          },
+        ],
+      },
     },
   },
   {
@@ -555,7 +813,7 @@ export const PROJECTS_CATALOGUE: readonly Project[] = [
         label: 'Diversion Rate Target',
         value: '45% → 75%',
         detail: 'KPI-driven reduction in uncollected perishable surplus food',
-        verified: true,
+        verified: false,
       },
       {
         label: 'Database Engine',
@@ -707,7 +965,7 @@ export const PROJECTS_CATALOGUE: readonly Project[] = [
             label: 'Target KPI Lift',
             value: '45% → 75%',
             detail: 'Structured decision tracking for Food Diversion Rate',
-            verified: true,
+            verified: false,
           },
         ],
       },
@@ -725,6 +983,94 @@ export const PROJECTS_CATALOGUE: readonly Project[] = [
             feature: 'Automated Real-Time Geospatial Matching Engine (PostGIS)',
             status: 'Planned Next Step',
             notes: 'Rank and auto-notify nearest NGOs based on perishability countdown, cold-chain capacity, and travel time.',
+          },
+        ],
+      },
+      sdlc: [
+        {
+          phase: 'Requirements',
+          status: 'Done',
+          summary:
+            'Interviewed NGO distribution managers to establish surplus perishable food workflows, shelf-life constraints, and audit logging needs.',
+        },
+        {
+          phase: 'Design',
+          status: 'Done',
+          summary:
+            'Designed a 3NF relational schema in PostgreSQL 18 with BCNF decomposition on donor organizations, perishable food listings, claims ledgers, and delivery logs.',
+        },
+        {
+          phase: 'Implementation',
+          status: 'Done',
+          summary:
+            'Authored complete DDL with foreign key constraints, CHECK expressions preventing expired claims, and analytical SQL views for executive KPI tracking.',
+        },
+        {
+          phase: 'Testing',
+          status: 'Done',
+          summary:
+            'Tested concurrent claim transactions using PostgreSQL Serializable isolation levels to ensure no double-booking of perishable food batches.',
+        },
+        {
+          phase: 'CI/CD',
+          status: 'Done',
+          summary:
+            'Database migration testing scripts run on schema changes in GitHub Actions.',
+        },
+        {
+          phase: 'Deployment',
+          status: 'Done',
+          summary:
+            'PostgreSQL 18 instance with seed dataset; client dashboard hosted via GitHub Pages.',
+        },
+        {
+          phase: 'Monitoring',
+          status: 'Designed only',
+          summary:
+            'pg_stat_statements query execution time monitoring designed; not connected to live APM.',
+        },
+        {
+          phase: 'Maintenance',
+          status: 'Not applicable',
+          summary: 'Academic and portfolio demonstration database platform.',
+        },
+      ],
+      systemDesign: {
+        requirements: {
+          functional: [
+            'Donors list surplus food batches with quantity, perishability timer, and cold storage flags',
+            'Verified NGOs view and claim available batches in their immediate municipal sector',
+            'Executive dashboard displays Food Diversion Rate, active listings, and uncollected surplus trends',
+          ],
+          nonFunctional: [
+            'Zero double-claim race conditions: strictly serializable transactions on food batch claims',
+            'Sub-10ms query execution on filtered geospatial catalog listings',
+            'Strict referential integrity preventing orphan claim records if a donor profile updates',
+          ],
+        },
+        dataModel:
+          'Third Normal Form (3NF) relational schema: donors, organizations, food_listings, claims, collection_routes, and audit_trail with zero update or insertion anomalies.',
+        apiDesign: [
+          'POST /api/v1/listings — Donor creates perishable batch with timestamp constraints',
+          'POST /api/v1/claims — NGO claims batch within transactional lock (SELECT FOR UPDATE)',
+          'GET /api/v1/analytics/diversion — Computes diversion percentage across active municipal zones',
+        ],
+        scaling: [
+          'PostGIS spatial index (GiST) on donor coordinates for rapid radius queries',
+          'Database partitioning on food_listings by month to optimize archiving of historic fulfilled donations',
+          'Read replicas for analytics dashboards, leaving primary database for operational donor/NGO transactions',
+        ],
+        failureHandling: [
+          'PostgreSQL advisory locks prevent simultaneous claim execution on the same listing ID',
+          'Automatic batch expiration via scheduled cron jobs resetting unclaimed expired batches to status="expired"',
+        ],
+        tradeoffs: [
+          {
+            decision: 'Strict 3NF Normalization vs NoSQL Document Store',
+            chosen: 'PostgreSQL 3NF Schema',
+            rejected: 'MongoDB Document Database',
+            reason:
+              'Food redistribution requires strict ACID guarantees to prevent NGOs dispatching logistics vehicles to already-claimed donations. 3NF ensures total data integrity without duplicate listing states.',
           },
         ],
       },
@@ -947,6 +1293,91 @@ export const PROJECTS_CATALOGUE: readonly Project[] = [
           },
         ],
       },
+      sdlc: [
+        {
+          phase: 'Requirements',
+          status: 'Done',
+          summary:
+            'Defined target detection classes (knives, firearms) and real-time CCTV latency requirements for rapid emergency notification.',
+        },
+        {
+          phase: 'Design',
+          status: 'Done',
+          summary:
+            'Comparative study of 4 computer vision paradigms (Haar Cascades, Custom CNN, YOLO, and SSD MobileNet v2) to establish the optimal speed vs accuracy frontier.',
+        },
+        {
+          phase: 'Implementation',
+          status: 'Done',
+          summary:
+            'Trained SSD MobileNet with transfer learning on 600 custom-annotated frames; integrated Python OpenCV pipeline with Telegram Bot API.',
+        },
+        {
+          phase: 'Testing',
+          status: 'Done',
+          summary:
+            'Benchmarked across mAP@0.5, mAP@0.5:0.95, precision, and inference FPS; documented in published paper IJCRT2305259.',
+        },
+        {
+          phase: 'CI/CD',
+          status: 'Done',
+          summary:
+            'Codebase hosted and versioned on GitHub with reproducible evaluation notebooks.',
+        },
+        {
+          phase: 'Deployment',
+          status: 'Done',
+          summary:
+            'Demonstration pipeline running on local video feeds and CCTV RTSP streams with automated Telegram alerts.',
+        },
+        {
+          phase: 'Monitoring',
+          status: 'Designed only',
+          summary:
+            'False positive logging and alert dispatch latency telemetry designed.',
+        },
+        {
+          phase: 'Maintenance',
+          status: 'Not applicable',
+          summary: 'Published academic research project.',
+        },
+      ],
+      systemDesign: {
+        requirements: {
+          functional: [
+            'Stream CCTV RTSP video frames into inference pipeline',
+            'Detect weapon instances with bounding boxes and confidence scores',
+            'Send instant Telegram alert with captured image evidence upon detection',
+          ],
+          nonFunctional: [
+            'Real-time processing (>= 20 FPS) on edge GPU/CPU without frame lag',
+            'Sub-2 second alert delivery to security personnel',
+            'Low false-positive rate to prevent alert fatigue',
+          ],
+        },
+        dataModel: 'Frame metadata, detection confidence tensors, and timestamped incident alert records.',
+        apiDesign: [
+          'POST /api/v1/stream/analyze — Ingests RTSP stream and applies detection',
+          'POST /api/v1/alerts/dispatch — Formats incident payload and dispatches via Telegram Webhook',
+        ],
+        scaling: [
+          'Decoupled frame capture thread and inference queue using Python multiprocessing',
+          'Batch frame inference for multi-camera CCTV feeds',
+        ],
+        failureHandling: [
+          'Telegram API connection retry with exponential backoff',
+          'Local disk buffering of incident images if network is temporarily disconnected',
+        ],
+        tradeoffs: [
+          {
+            decision: 'SSD MobileNet v2 vs Two-Stage Faster R-CNN',
+            chosen: 'SSD MobileNet v2 with Transfer Learning',
+            rejected: 'Faster R-CNN',
+            reason:
+              'Faster R-CNN provides slightly higher mAP but runs at < 8 FPS on edge hardware. SSD MobileNet achieves 24+ FPS on edge CPUs with 77.8% mAP@0.5, meeting the real-time constraint for live CCTV feeds.',
+          },
+        ],
+      },
     },
   },
   {
@@ -1155,6 +1586,100 @@ export const PROJECTS_CATALOGUE: readonly Project[] = [
             feature: 'WebPush Severe Weather Alert Subscriptions',
             status: 'Planned Next Step',
             notes: 'Background service-worker notifications for extreme Wet-Bulb ($T_w > 30°C$) or AQI spikes.',
+          },
+        ],
+      },
+      algorithms: [
+        {
+          requirement: 'AETHER: repeated weather lookups',
+          structure: 'LRU cache (hash map + doubly linked list)',
+          typescriptSignature:
+            'get(lat: number, lon: number): WeatherData | undefined; put(lat: number, lon: number, data: WeatherData): void',
+          complexity: 'O(1) get, O(1) put, O(capacity) space',
+          rationale:
+            'Constant-time lookup and eviction with no scanning, so recent queries never trigger a second API call.',
+        },
+      ],
+      sdlc: [
+        {
+          phase: 'Requirements',
+          status: 'Done',
+          summary:
+            'Specified 60 FPS responsive weather UI with offline caching and client-side psychrometric computations.',
+        },
+        {
+          phase: 'Design',
+          status: 'Done',
+          summary:
+            'Architected client-side O(1) Doubly-Linked LRU Cache and 2D KD-Tree for instant city proximity queries.',
+        },
+        {
+          phase: 'Implementation',
+          status: 'Done',
+          summary:
+            'Built in React 18 and TypeScript with Open-Meteo REST API integrations and Magnus-Tetens dew point physics.',
+        },
+        {
+          phase: 'Testing',
+          status: 'Done',
+          summary:
+            '10/10 automated tests verifying LRU cache eviction and ERA5 boundary checks.',
+        },
+        {
+          phase: 'CI/CD',
+          status: 'Done',
+          summary: 'Continuous deployment to GitHub Pages on every push.',
+        },
+        {
+          phase: 'Deployment',
+          status: 'Done',
+          summary: 'Hosted on GitHub Pages with Cloudflare CDN caching.',
+        },
+        {
+          phase: 'Monitoring',
+          status: 'Designed only',
+          summary: 'API error rate tracking designed for Open-Meteo endpoint degradation.',
+        },
+        {
+          phase: 'Maintenance',
+          status: 'Not applicable',
+          summary: 'Portfolio project.',
+        },
+      ],
+      systemDesign: {
+        requirements: {
+          functional: [
+            'Instant city weather search with prefix autocomplete',
+            'Display current weather, 14-day forecasts, and historical weather back to 1950',
+            'Compute Stull wet-bulb temperature and psychrometric comfort metrics on the fly',
+          ],
+          nonFunctional: [
+            '< 2ms cache retrieval time on repeated coordinate queries',
+            'Graceful degradation when upstream Open-Meteo APIs return HTTP 429 or 500',
+            'Zero server hosting costs: fully operable as a static client with edge API calls',
+          ],
+        },
+        dataModel:
+          'In-memory normalized WeatherData interface with daily and hourly time-series arrays.',
+        apiDesign: [
+          'GET https://api.open-meteo.com/v1/forecast — Fetches current and 14-day forecast',
+          'GET https://archive-api.open-meteo.com/v1/era5 — Fetches historical data (1950–present)',
+        ],
+        scaling: [
+          'Client-side O(1) LRU Cache storing up to 50 recent locations in memory',
+          'KD-Tree spatial index for nearest-station lookup in O(log N) time',
+        ],
+        failureHandling: [
+          'Automatic retry with exponential backoff on HTTP 429 rate limit responses',
+          'Clear error banner on coordinates exceeding valid latitude (-90 to 90) or dates before 1950',
+        ],
+        tradeoffs: [
+          {
+            decision: 'Client-side LRU Cache vs Browser localStorage Only',
+            chosen: 'In-memory Doubly-Linked List + Hash Map (backed by localStorage)',
+            rejected: 'Pure localStorage reads on every render',
+            reason:
+              'localStorage JSON deserialization is synchronous and slow (5-10ms) for large time series. In-memory LRU delivers sub-microsecond cache hits.',
           },
         ],
       },

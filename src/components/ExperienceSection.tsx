@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
 import {
-  Award,
-  Briefcase,
-  Building2,
   Calendar,
   CheckCircle2,
   ExternalLink,
-  GraduationCap,
   MapPin,
-  Users,
 } from 'lucide-react';
 import { TIMELINE_ITEMS } from '../data/portfolioData';
 

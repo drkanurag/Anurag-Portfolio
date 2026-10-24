@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import {
   ArrowRight,
-  BookOpen,
-  Code2,
-  Compass,
-  ExternalLink,
-  FileText,
   Search,
   X,
 } from 'lucide-react';
-import { PROFILE_DATA, PROJECTS_CATALOGUE } from '../data/portfolioData';
+import { PROJECTS_CATALOGUE } from '../data/portfolioData';
 import { STATIC_NAV_ROUTES } from '../lib/catalogueEngine';
 import { ProjectSlug } from '../types/portfolio';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUp, BookOpen, Mail } from 'lucide-react';
+import { ArrowUp, BookOpen } from 'lucide-react';
 import { GithubIcon as Github, LinkedinIcon as Linkedin } from './BrandIcons';
 import { PROFILE_DATA } from '../data/portfolioData';
 import { STATIC_NAV_ROUTES } from '../lib/catalogueEngine';

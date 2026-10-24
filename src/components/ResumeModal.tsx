@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Download,
   ExternalLink,
   FileText,
-  Printer,
   X,
 } from 'lucide-react';
 import { PROFILE_DATA } from '../data/portfolioData';
 
-const cvPdfUrl = './src/assets/cv.pdf';
+const cvPdfUrl = `${import.meta.env.BASE_URL}Anurag_Podder_Resume.pdf`;
 
 interface ResumeModalProps {
   isOpen: boolean;
@@ -16,6 +15,15 @@ interface ResumeModalProps {
 }
 
 export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   return (
@@ -31,27 +39,28 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
           <div className="flex items-center gap-2.5">
             <FileText className="w-5 h-5 text-cyan-400" />
             <h2 id="resume-modal-title" className="font-display text-base sm:text-lg font-bold text-white">
-              Anurag Podder — Executive Curriculum Vitae
+              Anurag Podder — Resume
             </h2>
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
             <a
               href={cvPdfUrl}
-              download="Anurag_Podder_CV.pdf"
+              download="Anurag_Podder_Resume.pdf"
               className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-mono text-xs font-semibold transition"
             >
               <Download className="w-3.5 h-3.5" />
               <span>Download PDF</span>
             </a>
-            <button
-              type="button"
-              onClick={() => window.print()}
+            <a
+              href={cvPdfUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-mono text-xs transition"
             >
-              <Printer className="w-3.5 h-3.5" />
-              <span>Print Executive View</span>
-            </button>
+              <ExternalLink className="w-3.5 h-3.5" />
+              <span>Open PDF</span>
+            </a>
             <button
               type="button"
               onClick={onClose}
@@ -75,9 +84,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
             </div>
             <div className="font-mono text-xs text-slate-400 space-y-0.5 sm:text-right">
               <div>{PROFILE_DATA.contacts.academicEmail}</div>
-              <div>
-                {PROFILE_DATA.contacts.personalEmail} · {PROFILE_DATA.contacts.phone}
-              </div>
+              <div>{PROFILE_DATA.contacts.personalEmail}</div>
               <div>github.com/drkanurag · linkedin.com/in/anurag-podder-4a86211a6</div>
             </div>
           </div>
@@ -103,20 +110,18 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
               <div className="flex flex-col sm:flex-row sm:items-center justify-between">
                 <div>
                   <div className="font-bold text-white">
-                    SRM Institute of Science and Technology (SRMIST), Delhi-NCR Campus
+                    SRM Institute of Science and Technology (SRMIST), Kattankulathur
                   </div>
                   <div className="text-xs text-slate-300">
-                    B.Tech in Computer Science and Engineering (CSE) — First Class with Distinction
+                    Bachelor of Technology (B.Tech) in Computer Science &amp; Engineering — CGPA: 9.05 / 10
                   </div>
                 </div>
-                <div className="font-mono text-xs text-emerald-300">
-                  CGPA: 9.05 / 10 (90.50%) · 2019 – 2023
-                </div>
+                <div className="font-mono text-xs text-cyan-300">2019 – 2023</div>
               </div>
             </div>
           </div>
 
-          {/* Experience */}
+          {/* Professional Experience */}
           <div>
             <h4 className="font-mono text-xs uppercase tracking-widest text-indigo-400 mb-3">
               PROFESSIONAL EXPERIENCE
@@ -125,16 +130,16 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
               <div>
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between">
                   <div className="font-bold text-white">
-                    Mphasis, Pune — Associate Software Engineer (Enterprise Application Development)
+                    Mphasis, Pune — Associate Software Engineer
                   </div>
                   <div className="font-mono text-xs text-cyan-300">Dec 2024 – Feb 2025</div>
                 </div>
                 <ul className="list-disc list-inside text-xs text-slate-300 mt-1.5 space-y-1">
                   <li>
-                    Built and maintained enterprise web applications using Core Java, JSP, Servlets &amp; Spring Boot (+15% performance &amp; scalability).
+                    Engineered robust enterprise web applications using Core Java, Spring Boot, RESTful APIs, and JSP/Servlets.
                   </li>
                   <li>
-                    Engineered and integrated RESTful APIs using Spring Boot (+18% backend efficiency and seamless module integration).
+                    Optimized backend REST endpoints, reducing payload overhead and improving response times across high-concurrency flows.
                   </li>
                   <li>
                     Collaborated with QA, UI/UX, and DevOps teams in Agile sprints for stable production deployments.
@@ -163,7 +168,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
             </div>
           </div>
 
-          {/* Published Research & Flagship Systems */}
+          {/* Published Research & Key Systems */}
           <div>
             <h4 className="font-mono text-xs uppercase tracking-widest text-indigo-400 mb-3">
               PUBLISHED RESEARCH &amp; KEY SYSTEMS
@@ -177,7 +182,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                 (IJCRT Vol. 11, Issue 5, May 2023). Real-time CCTV weapon detection using TensorFlow SSD MobileNet Transfer Learning &amp; Telegram Bot API.
               </li>
               <li>
-                <strong className="text-white">RoadVision AI:</strong> Dual-Model Specialist WBF Ensemble (`rdd2022_india_trained` + `rdd2022_yolov8n`) &amp; Morphological Black-Hat ASTM D6433 road severity platform (~48ms CPU inference across 5 FastAPI services).
+                <strong className="text-white">RoadVision AI:</strong> Dual-model WBF ensemble (<code>rdd2022_india_trained</code> + <code>rdd2022_yolov8n</code>) with morphological black-hat analysis for ASTM D6433 road-condition scoring. About 48 ms CPU inference across 5 FastAPI services (benchmarked on Intel Core i7, 640x640 input resolution).
               </li>
               <li>
                 <strong className="text-white">DataLens Global Manager:</strong> 6-service enterprise workforce analytics mesh with Row-Level (RLS) and Column-Level Security (CLS) across 9 governance roles.
@@ -192,4 +197,3 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
     </div>
   );
 };
-
