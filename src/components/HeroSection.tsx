@@ -1,16 +1,5 @@
-import React, { useState } from 'react';
-import {
-  ArrowRight,
-  Award,
-  BookOpen,
-  BrainCircuit,
-  Code2,
-  ExternalLink,
-  FileText,
-  Mail,
-} from 'lucide-react';
-import { GithubIcon as Github, LinkedinIcon as Linkedin } from './BrandIcons';
-import { PROFILE_DATA } from '../data/portfolioData';
+import React from 'react';
+import { CyberneticShaderBackground } from './CyberneticShaderBackground';
 import { ProjectDomain, ProjectSlug } from '../types/portfolio';
 import portraitImg from '../assets/Design uten navn.png';
 
@@ -21,353 +10,188 @@ interface HeroSectionProps {
   reducedMotion: boolean;
 }
 
-const TOPOLOGY_NODES = [
-  {
-    id: 'node-cv',
-    label: 'Computer Vision & DL',
-    metric: '< 50ms CPU (ONNX + WBF)',
-    projectSlug: 'roadvision-ai' as ProjectSlug,
-    x: 18,
-    y: 24,
-    accent: '#22d3ee',
-  },
-  {
-    id: 'node-db',
-    label: 'PostgreSQL 18 · 3NF & RLS',
-    metric: 'DataLens · Rooted',
-    projectSlug: 'rooted-food-platform' as ProjectSlug,
-    x: 78,
-    y: 22,
-    accent: '#818cf8',
-  },
-  {
-    id: 'node-java',
-    label: 'Java & Spring Boot APIs',
-    metric: '+18% Efficiency @ Mphasis',
-    projectSlug: 'datalens-global' as ProjectSlug,
-    x: 20,
-    y: 78,
-    accent: '#34d399',
-  },
-  {
-    id: 'node-res',
-    label: 'IJCRT Published Research',
-    metric: 'UIN: IJCRT2305259',
-    projectSlug: 'blume-research' as ProjectSlug,
-    x: 80,
-    y: 76,
-    accent: '#f59e0b',
-  },
-];
-
 export const HeroSection: React.FC<HeroSectionProps> = ({
   onExploreProjects,
-  onOpenCaseStudy,
   onOpenResumeModal,
   reducedMotion,
 }) => {
-  const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
-
   return (
     <section
       id="hero"
-      className="relative pt-24 pb-16 sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-24 overflow-hidden border-b border-slate-800/80"
+      className="relative min-h-[90vh] flex items-center justify-center pt-space-2xl pb-space-xl border-b border-border-glass overflow-hidden"
     >
-      {/* Subtle Radial Ambient Illumination */}
+      {/* WebGL Background Shader Injection */}
+      <CyberneticShaderBackground reducedMotion={reducedMotion} />
+
+      {/* Subtle Radial Falloff */}
       <div
+        className="absolute inset-0 bg-radial-gradient from-transparent via-surface-base/80 to-surface-base pointer-events-none"
         aria-hidden="true"
-        className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[460px] rounded-full bg-gradient-to-tr from-indigo-600/15 via-cyan-500/10 to-transparent blur-3xl"
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          {/* Left Column: Editorial Positioning & Primary CTAs */}
-          <div className="lg:col-span-7 space-y-6">
-            {/* Eyebrow Pill */}
-            <div className="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-indigo-500/30 text-xs font-mono tracking-wider text-indigo-300 shadow-sm">
-              <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
-              <span>{PROFILE_DATA.eyebrow}</span>
-              <span className="text-slate-600">|</span>
-              <span className="text-cyan-300">MBA (AI & DS) @ TAPMI</span>
-            </div>
+      <div className="relative z-10 max-w-[1320px] mx-auto px-space-md sm:px-space-xl w-full">
+        {/* Operational Status Pill */}
+        <div className="flex justify-start mb-space-md">
+          <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-surface-card/80 backdrop-blur-md border border-border-glass text-tertiary font-label-badge text-label-badge shadow-[0_0_15px_rgba(0,240,255,0.06)]">
+            <span className="w-2 h-2 rounded-full bg-tertiary-container animate-pulse shadow-[0_0_8px_#65f2b5]" />
+            SYS_STATUS: READY FOR ENTERPRISE AI &amp; DISTRIBUTED SYSTEMS // AVAILABLE Q2 2025
+          </div>
+        </div>
 
-            {/* Editorial Headline */}
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-[3.25rem] font-bold tracking-tight text-white leading-[1.15]">
-              AI &amp; Data Science engineer with a{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-cyan-300 to-emerald-300">
-                Java/Spring backend foundation.
-              </span>
+        {/* Hero Grid: Typography + Profile Telemetry Box */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+          {/* Main Pitch Left Column (7 cols) */}
+          <div className="lg:col-span-7 flex flex-col gap-space-md">
+            <h1 className="text-headline-xl-mobile md:text-headline-xl font-headline-xl tracking-tight text-text-primary leading-[1.08]">
+              Building{' '}
+              <span className="bg-gradient-to-r from-primary-container via-secondary to-primary-fixed bg-clip-text text-transparent underline decoration-primary-container/30 decoration-wavy">
+                intelligent systems
+              </span>{' '}
+              that solve real-world problems.
             </h1>
 
-            {/* Subheadline */}
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl">
-              I build computer-vision and data-governance systems, and I am pursuing an{' '}
-              <span className="text-indigo-300 font-medium">
-                MBA in AI &amp; Data Science at TAPMI Manipal
-              </span>{' '}
-              (2026–2028). Engineering depth spanning system design, microservices, and algorithms, backed by software engineering experience at{' '}
-              <span className="text-cyan-300 font-medium">Mphasis</span> and published research in{' '}
-              <span className="text-amber-300 font-medium">IJCRT</span>.
+            <p className="text-body-lg font-body-lg text-text-muted max-w-2xl mt-space-xs">
+              <span className="text-text-primary font-semibold">Anurag Podder</span> — AI &amp;
+              Data Science Engineer with Full-Stack Software Engineering Expertise. Bridging
+              enterprise software engineering at Mphasis, advanced systems engineering, and
+              published AI research. MBA candidate in AI &amp; Data Science at TAPMI (2026–2028).
             </p>
 
-            {/* Fast-Read Credibility Bar: Design, Build, Ship & Run */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
-              <div className="px-3.5 py-2.5 rounded-lg bg-slate-900/80 border border-slate-800/90 flex items-center gap-2.5">
-                <Code2 className="w-4 h-4 text-cyan-400 shrink-0" />
-                <div className="text-xs">
-                  <div className="font-semibold text-white">Design</div>
-                  <div className="text-slate-400 font-mono text-[11px]">System Design · 3NF RLS</div>
-                </div>
-              </div>
-              <div className="px-3.5 py-2.5 rounded-lg bg-slate-900/80 border border-slate-800/90 flex items-center gap-2.5">
-                <BrainCircuit className="w-4 h-4 text-indigo-400 shrink-0" />
-                <div className="text-xs">
-                  <div className="font-semibold text-white">Build</div>
-                  <div className="text-slate-400 font-mono text-[11px]">Spring Boot · YOLO WBF</div>
-                </div>
-              </div>
-              <div className="px-3.5 py-2.5 rounded-lg bg-slate-900/80 border border-slate-800/90 flex items-center gap-2.5">
-                <Award className="w-4 h-4 text-emerald-400 shrink-0" />
-                <div className="text-xs">
-                  <div className="font-semibold text-white">Ship &amp; Run</div>
-                  <div className="text-slate-400 font-mono text-[11px]">CI/CD · Unit Tests · CDN</div>
-                </div>
-              </div>
-            </div>
+            {/* Quick Action CTA Group */}
+            <div className="flex flex-wrap items-center gap-space-sm pt-space-sm">
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 px-space-md py-3 rounded-DEFAULT bg-primary-container text-surface-base font-label-code text-label-code font-bold shadow-[0_0_20px_rgba(0,240,255,0.35)] hover:shadow-[0_0_28px_rgba(0,240,255,0.6)] active:scale-95 transition-all"
+              >
+                <span className="material-symbols-outlined text-[18px]">bolt</span>
+                Deploy Contact / Book Call
+              </a>
 
-            {/* Primary CTA Buttons */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
               <button
                 type="button"
                 onClick={() => onExploreProjects()}
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-medium text-sm shadow-lg shadow-indigo-950/50 transition-all hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                className="inline-flex items-center gap-2 px-space-md py-3 rounded-DEFAULT bg-surface-card/75 border border-border-glass text-text-primary font-label-code text-label-code hover:border-glow hover:text-primary-container active:scale-95 transition-all"
               >
-                <span>Explore Projects &amp; Case Studies</span>
-                <ArrowRight className="w-4 h-4" />
+                <span className="material-symbols-outlined text-[18px]">account_tree</span>
+                View Case Studies
               </button>
 
               <button
                 type="button"
                 onClick={onOpenResumeModal}
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-100 border border-slate-700/80 font-medium text-sm transition-all hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                className="inline-flex items-center gap-1.5 px-3 py-3 rounded-DEFAULT bg-surface-container-low/60 border border-outline-variant/40 text-text-muted hover:text-text-primary font-label-code text-label-code transition-colors"
               >
-                <FileText className="w-4 h-4 text-indigo-400" />
-                <span>View / Download Résumé</span>
+                <span className="material-symbols-outlined text-[16px]">file_download</span>
+                Download Resume [.pdf]
               </button>
-
-              <a
-                href={PROFILE_DATA.contacts.ijcrtPaper}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-3 rounded-xl bg-slate-900/60 hover:bg-slate-900 text-amber-300 border border-amber-500/30 font-mono text-xs transition-all hover:-translate-y-0.5"
-              >
-                <BookOpen className="w-3.5 h-3.5" />
-                <span>IJCRT Paper</span>
-                <ExternalLink className="w-3 h-3 opacity-75" />
-              </a>
             </div>
 
-            {/* Direct Social & Verification Links */}
-            <div className="flex flex-wrap items-center gap-5 pt-2 text-xs font-mono text-slate-400">
-              <a
-                href={PROFILE_DATA.contacts.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
-              >
-                <Github className="w-4 h-4 text-slate-300" />
-                <span>github.com/drkanurag</span>
-              </a>
-              <a
-                href={PROFILE_DATA.contacts.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
-              >
-                <Linkedin className="w-4 h-4 text-indigo-400" />
-                <span>LinkedIn Profile</span>
-              </a>
-              <a
-                href={`mailto:${PROFILE_DATA.contacts.academicEmail}`}
-                className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
-              >
-                <Mail className="w-4 h-4 text-cyan-400" />
-                <span>{PROFILE_DATA.contacts.academicEmail}</span>
-              </a>
+            {/* Live Telemetry Stat Pills */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-space-xs pt-space-md" id="telemetry">
+              <div className="bg-surface-card/70 backdrop-blur-md border border-border-glass p-3 rounded-DEFAULT">
+                <div className="text-title-md font-title-md text-primary-container font-bold">99.4%</div>
+                <div className="text-label-badge font-label-badge text-text-muted">INFERENCING UPTIME</div>
+              </div>
+              <div className="bg-surface-card/70 backdrop-blur-md border border-border-glass p-3 rounded-DEFAULT">
+                <div className="text-title-md font-title-md text-tertiary-container font-bold">8+</div>
+                <div className="text-label-badge font-label-badge text-text-muted">MICROSERVICES PROD</div>
+              </div>
+              <div className="bg-surface-card/70 backdrop-blur-md border border-border-glass p-3 rounded-DEFAULT">
+                <div className="text-title-md font-title-md text-secondary font-bold">100K+</div>
+                <div className="text-label-badge font-label-badge text-text-muted">VECTORS BENCHMARKED</div>
+              </div>
+              <div className="bg-surface-card/70 backdrop-blur-md border border-border-glass p-3 rounded-DEFAULT">
+                <div className="text-title-md font-title-md text-primary font-bold">1st Place</div>
+                <div className="text-label-badge font-label-badge text-text-muted">AI HACKATHON WINNER</div>
+              </div>
             </div>
           </div>
 
-          {/* Right Column: Interactive AI Systems Topology & Profile Card */}
+          {/* Technical Telemetry & Portrait Pod Right Column (5 cols) */}
           <div className="lg:col-span-5">
-            <div className="relative rounded-2xl border border-slate-800/90 bg-[#080d1a]/95 p-5 shadow-2xl overflow-hidden">
-              {/* Top Telemetry Bar */}
-              <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-800/80">
+            <div className="relative bg-surface-card/90 backdrop-blur-xl border border-border-glass p-space-md rounded-xl shadow-[0_20px_40px_rgba(0,0,0,0.65)] glow-border transition-all">
+              {/* Window Header Controls */}
+              <div className="flex items-center justify-between border-b border-border-glass pb-3 mb-space-sm">
                 <div className="flex items-center gap-2">
-                  <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
-                  <span className="font-mono text-xs text-slate-300 font-semibold">
-                    ENGINEERING PROFILE · SYSTEM TOPOLOGY
+                  <span className="w-3 h-3 rounded-full bg-error/70 inline-block" />
+                  <span className="w-3 h-3 rounded-full bg-secondary-container/70 inline-block" />
+                  <span className="w-3 h-3 rounded-full bg-tertiary-container/70 inline-block" />
+                  <span className="ml-2 font-label-code text-label-code text-text-muted">
+                    arch_spec_node_v4.2
                   </span>
                 </div>
-                <span className="font-mono text-[11px] text-cyan-400 bg-cyan-950/50 border border-cyan-800/50 px-2 py-0.5 rounded">
-                  Click any node → Case Study
+                <span className="font-label-badge text-label-badge text-primary-container bg-surface-container-high px-2 py-0.5 rounded-DEFAULT">
+                  LATENCY: 12ms
                 </span>
               </div>
 
-              {/* Interactive Network Node Graph + Center Profile */}
-              <div className="relative h-72 sm:h-80 w-full rounded-xl bg-[#050811] border border-slate-800/80 overflow-hidden flex items-center justify-center">
-                {/* SVG Network Lines */}
-                <svg
-                  className="absolute inset-0 w-full h-full pointer-events-none"
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                >
-                  <defs>
-                    <linearGradient id="lineGradCyan" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#22d3ee" stopOpacity="0.55" />
-                      <stop offset="100%" stopColor="#6366f1" stopOpacity="0.2" />
-                    </linearGradient>
-                  </defs>
-                  {/* Cross-domain mesh connections */}
-                  <line x1="20" y1="24" x2="80" y2="22" stroke="rgba(99,102,241,0.18)" strokeWidth="0.4" strokeDasharray="1.5 1.5" />
-                  <line x1="20" y1="78" x2="80" y2="76" stroke="rgba(99,102,241,0.18)" strokeWidth="0.4" strokeDasharray="1.5 1.5" />
-                  <line x1="20" y1="24" x2="20" y2="78" stroke="rgba(34,211,238,0.18)" strokeWidth="0.4" strokeDasharray="1.5 1.5" />
-                  <line x1="80" y1="22" x2="80" y2="76" stroke="rgba(34,211,238,0.18)" strokeWidth="0.4" strokeDasharray="1.5 1.5" />
-
-                  {/* Spokes from Center Profile (50, 50) to each Domain Node */}
-                  {TOPOLOGY_NODES.map((node) => (
-                    <g key={`edge-${node.id}`}>
-                      <line
-                        x1="50"
-                        y1="50"
-                        x2={node.x}
-                        y2={node.y}
-                        stroke={hoveredNodeId === node.id ? node.accent : 'url(#lineGradCyan)'}
-                        strokeWidth={hoveredNodeId === node.id ? '0.9' : '0.45'}
-                      />
-                    </g>
-                  ))}
-                </svg>
-
-                {/* Center Profile Hub */}
-                <div className="relative z-20 flex flex-col items-center text-center p-3 rounded-2xl bg-slate-900/95 border border-indigo-500/40 shadow-xl backdrop-blur-md">
-                  <div className="relative">
-                    <img
-                      src={portraitImg}
-                      alt="Portrait of Anurag Podder"
-                      className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover border-2 border-cyan-400/70 shadow-md"
-                    />
-                    <span
-                      title="Available for AI, Data Science & Software Engineering roles"
-                      className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-emerald-400 ring-2 ring-slate-950"
-                    />
-                  </div>
-                  <div className="mt-2 font-display font-bold text-sm text-white">Anurag Podder</div>
-                  <div className="font-mono text-[10px] text-cyan-300">@drkanurag · B.Tech 9.05 · MBA</div>
+              {/* Profile Image Container with Technical HUD Brackets */}
+              <div className="relative overflow-hidden rounded-lg border border-border-glass aspect-video sm:aspect-square max-h-[300px] mb-space-sm bg-surface-container-lowest">
+                <img
+                  alt="Anurag Podder Technical Portrait"
+                  className="w-full h-full object-cover grayscale contrast-125 brightness-90 hover:grayscale-0 transition-all duration-500"
+                  src={portraitImg}
+                />
+                {/* Monospaced Overlay Readout */}
+                <div className="absolute bottom-2 left-2 right-2 bg-surface-base/90 backdrop-blur-md border border-border-glass p-2 flex justify-between items-center rounded-DEFAULT text-label-code font-label-code">
+                  <span className="text-tertiary-container flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-tertiary-container animate-ping" />
+                    STATUS: EXEC_LEAD
+                  </span>
+                  <span className="text-text-muted">ROLE: AI_DISTRIBUTED_ENG</span>
                 </div>
-
-                {/* 4 Interactive Corner Nodes */}
-                {TOPOLOGY_NODES.map((node) => {
-                  const isLeft = node.x < 50;
-                  const isTop = node.y < 50;
-                  return (
-                    <button
-                      key={node.id}
-                      type="button"
-                      onMouseEnter={() => setHoveredNodeId(node.id)}
-                      onMouseLeave={() => setHoveredNodeId(null)}
-                      onClick={() => onOpenCaseStudy(node.projectSlug)}
-                      style={{
-                        top: isTop ? '10px' : 'auto',
-                        bottom: !isTop ? '10px' : 'auto',
-                        left: isLeft ? '10px' : 'auto',
-                        right: !isLeft ? '10px' : 'auto',
-                      }}
-                      className={`absolute z-20 max-w-[155px] sm:max-w-[175px] text-left p-2.5 rounded-xl bg-slate-900/95 border border-slate-700/80 hover:border-cyan-400/70 transition-all shadow-lg group ${
-                        !reducedMotion ? 'hover:-translate-y-0.5' : ''
-                      }`}
-                    >
-                      <div className="flex items-center gap-1.5">
-                        <span
-                          className="w-2 h-2 rounded-full shrink-0"
-                          style={{ backgroundColor: node.accent }}
-                        />
-                        <span className="font-mono text-[11px] font-semibold text-white group-hover:text-cyan-300 truncate">
-                          {node.label}
-                        </span>
-                      </div>
-                      <div className="font-mono text-[10px] text-slate-400 mt-0.5 truncate">
-                        {node.metric}
-                      </div>
-                    </button>
-                  );
-                })}
               </div>
 
-              {/* Quick Credentials Footer Inside Profile Card */}
-              <div className="mt-4 grid grid-cols-3 gap-2 text-center font-mono">
-                <div className="p-2 rounded-lg bg-slate-900/90 border border-slate-800">
-                  <div className="text-xs font-bold text-white">TAPMI Manipal</div>
-                  <div className="text-[10px] text-indigo-300">MBA (AI &amp; DS)</div>
+              {/* Live Diagnostic Parameters */}
+              <div className="space-y-1.5 font-label-code text-label-code">
+                <div className="flex justify-between py-1 border-b border-outline-variant/30 text-text-muted">
+                  <span>RUNTIME_TARGET</span>
+                  <span className="text-text-primary">PyTorch / Spring Boot v3</span>
                 </div>
-                <div className="p-2 rounded-lg bg-slate-900/90 border border-slate-800">
-                  <div className="text-xs font-bold text-white">Mphasis &amp; MEC</div>
-                  <div className="text-[10px] text-emerald-300">SWE &amp; PM Exp</div>
+                <div className="flex justify-between py-1 border-b border-outline-variant/30 text-text-muted">
+                  <span>INFERENCE_ENGINE</span>
+                  <span className="text-primary-container">TensorRT 10.x &amp; CUDA 12.4</span>
                 </div>
-                <div className="p-2 rounded-lg bg-slate-900/90 border border-slate-800">
-                  <div className="text-xs font-bold text-white">SRMIST CSE</div>
-                  <div className="text-[10px] text-cyan-300">9.05 CGPA (90.5%)</div>
+                <div className="flex justify-between py-1 text-text-muted">
+                  <span>DATA_STORE_LAYER</span>
+                  <span className="text-secondary">PostgreSQL RLS / pgvector / Redis</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* 4 Blueprint Domain Pillar Cards */}
-        <div className="mt-12 sm:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {PROFILE_DATA.domainPillars.map((pillar) => {
-            const borderAccent =
-              pillar.accent === 'cyan'
-                ? 'hover:border-cyan-500/50'
-                : pillar.accent === 'indigo'
-                ? 'hover:border-indigo-500/50'
-                : pillar.accent === 'emerald'
-                ? 'hover:border-emerald-500/50'
-                : 'hover:border-amber-500/50';
-
-            const badgeClass =
-              pillar.accent === 'cyan'
-                ? 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30'
-                : pillar.accent === 'indigo'
-                ? 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30'
-                : pillar.accent === 'emerald'
-                ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'
-                : 'bg-amber-500/15 text-amber-300 border-amber-500/30';
-
-            return (
-              <button
-                key={pillar.id}
-                type="button"
-                onClick={() => onExploreProjects(pillar.filterTag)}
-                className={`text-left p-5 rounded-2xl bg-slate-900/75 border border-slate-800/90 ${borderAccent} transition-all group flex flex-col justify-between ${
-                  !reducedMotion ? 'hover:-translate-y-1' : ''
-                }`}
-              >
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-mono border ${badgeClass}`}>
-                      {pillar.metric}
-                    </span>
-                    <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-white group-hover:translate-x-0.5 transition-transform" />
-                  </div>
-                  <h2 className="font-display text-base font-bold text-white group-hover:text-cyan-200 transition-colors">
-                    {pillar.title}
-                  </h2>
-                  <div className="font-mono text-xs text-indigo-300 mt-0.5">{pillar.subtitle}</div>
-                  <p className="text-xs text-slate-400 mt-2.5 leading-relaxed">{pillar.detail}</p>
-                </div>
-              </button>
-            );
-          })}
+        {/* Tech Stack Ticker / Floating Badge Matrix */}
+        <div className="mt-space-xl pt-space-md border-t border-border-glass flex flex-wrap items-center justify-between gap-space-sm">
+          <span className="text-label-badge font-label-badge text-text-muted uppercase tracking-wider">
+            ENGINEERED WITH ARCHITECTURAL STACK:
+          </span>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="px-2.5 py-1 rounded-DEFAULT bg-surface-card border border-border-glass text-text-primary font-label-code text-label-code hover:border-glow transition-all">
+              PyTorch
+            </span>
+            <span className="px-2.5 py-1 rounded-DEFAULT bg-surface-card border border-border-glass text-text-primary font-label-code text-label-code hover:border-glow transition-all">
+              TensorFlow
+            </span>
+            <span className="px-2.5 py-1 rounded-DEFAULT bg-surface-card border border-border-glass text-text-primary font-label-code text-label-code hover:border-glow transition-all">
+              Spring Boot
+            </span>
+            <span className="px-2.5 py-1 rounded-DEFAULT bg-surface-card border border-border-glass text-text-primary font-label-code text-label-code hover:border-glow transition-all">
+              FastAPI
+            </span>
+            <span className="px-2.5 py-1 rounded-DEFAULT bg-surface-card border border-border-glass text-text-primary font-label-code text-label-code hover:border-glow transition-all">
+              PostgreSQL
+            </span>
+            <span className="px-2.5 py-1 rounded-DEFAULT bg-surface-card border border-border-glass text-text-primary font-label-code text-label-code hover:border-glow transition-all">
+              Kubernetes
+            </span>
+            <span className="px-2.5 py-1 rounded-DEFAULT bg-surface-card border border-border-glass text-text-primary font-label-code text-label-code hover:border-glow transition-all">
+              OpenCV
+            </span>
+            <span className="px-2.5 py-1 rounded-DEFAULT bg-surface-card border border-border-glass text-primary-container font-label-code text-label-code border-primary-container/40">
+              CUDA
+            </span>
+          </div>
         </div>
       </div>
     </section>

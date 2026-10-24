@@ -5,11 +5,10 @@ import {
   FileText,
   Menu,
   Moon,
-  Sparkles,
   Sun,
+  Terminal,
   X,
 } from 'lucide-react';
-import { STATIC_NAV_ROUTES } from '../lib/catalogueEngine';
 import { ProjectSlug } from '../types/portfolio';
 
 interface NavbarProps {
@@ -25,6 +24,22 @@ interface NavbarProps {
   onToggleReducedMotion: () => void;
 }
 
+interface NavItem {
+  id: string;
+  label: string;
+}
+
+const NAV_ITEMS: readonly NavItem[] = [
+  { id: 'hero', label: 'Telemetry' },
+  { id: 'projects', label: 'Case Studies' },
+  { id: 'catalogue', label: 'Catalogue' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'research', label: 'Research' },
+  { id: 'experience', label: 'Milestones' },
+  { id: 'architecture', label: 'Systems' },
+  { id: 'contact', label: 'Console' },
+];
+
 export const Navbar: React.FC<NavbarProps> = ({
   activeSection,
   activeCaseStudySlug,
@@ -34,8 +49,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenResumeModal,
   theme,
   onToggleTheme,
-  reducedMotion,
-  onToggleReducedMotion,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -45,168 +58,152 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-slate-800/80 bg-[#060911]/90 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
-        {/* Brand Identity / Case Study Back Button */}
-        <div className="flex items-center gap-3">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-surface-glass backdrop-blur-md border-b border-border-glass shadow-[0_20px_40px_rgba(0,0,0,0.65)]">
+      <div className="flex justify-between items-center w-full px-space-md sm:px-space-xl max-w-[1320px] mx-auto py-space-sm">
+        {/* Brand Logo / Identity */}
+        <div className="flex items-center gap-space-sm">
           <button
             type="button"
             onClick={() => handleNavClick('hero')}
-            className="flex items-center gap-2.5 text-left group focus:outline-none"
+            className="flex items-center gap-2 group text-left focus:outline-none"
           >
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center font-mono font-bold text-sm text-slate-950 shadow-sm">
-              AP
-            </div>
-            <div>
-              <div className="font-display font-bold text-sm tracking-wider text-white group-hover:text-cyan-300 transition-colors">
-                ANURAG PODDER
-              </div>
-              <div className="font-mono text-[10px] text-slate-400 hidden sm:block">
-                AI &amp; DATA SCIENCE · SWE
-              </div>
-            </div>
+            <span className="w-2.5 h-2.5 rounded-full bg-primary-container shadow-[0_0_10px_#00F0FF] animate-pulse shrink-0" />
+            <span className="text-title-md font-title-md tracking-wider text-text-primary uppercase group-hover:text-primary-container transition-colors">
+              ANURAG PODDER // AI ARCHITECT
+            </span>
           </button>
 
           {activeCaseStudySlug && (
             <button
               type="button"
               onClick={onCloseCaseStudy}
-              className="ml-2 inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-indigo-500/20 hover:bg-indigo-500/30 border border-indigo-400/40 text-indigo-200 font-mono text-xs transition"
+              className="ml-2 inline-flex items-center gap-1.5 px-3 py-1 rounded-DEFAULT bg-primary-container/10 hover:bg-primary-container/20 border border-primary-container/40 text-primary-container font-label-code text-label-code transition"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
-              <span>All Projects</span>
+              <span>Back to Overview</span>
             </button>
           )}
         </div>
 
         {/* Desktop Navigation Links */}
-        <nav aria-label="Primary Navigation" className="hidden lg:flex items-center gap-1">
-          {STATIC_NAV_ROUTES.map((route) => {
-            const isActive =
-              !activeCaseStudySlug && activeSection === route.id;
+        <nav aria-label="Primary Navigation" className="hidden lg:flex items-center gap-6">
+          {NAV_ITEMS.map((item) => {
+            const isActive = !activeCaseStudySlug && activeSection === item.id;
             return (
               <button
-                key={route.id}
+                key={item.id}
                 type="button"
-                onClick={() => handleNavClick(route.id)}
-                className={`px-3 py-1.5 rounded-lg font-mono text-xs transition-all flex items-center gap-1.5 ${
+                onClick={() => handleNavClick(item.id)}
+                className={`font-label-code text-label-code transition-colors ${
                   isActive
-                    ? 'bg-indigo-500/20 text-cyan-300 border border-indigo-500/40 font-semibold'
-                    : 'text-slate-400 hover:text-white hover:bg-slate-900/70'
+                    ? 'text-primary-container border-b-2 border-primary-container pb-1 font-semibold'
+                    : 'text-text-muted hover:text-text-primary'
                 }`}
               >
-                <span className="text-[10px] text-slate-500">{route.number}</span>
-                <span>{route.label}</span>
+                {item.label}
               </button>
             );
           })}
         </nav>
 
-        {/* Right Actions: Command Palette, Motion/Theme Controls & Resume */}
-        <div className="flex items-center gap-2">
+        {/* Trailing Action Cluster */}
+        <div className="flex items-center gap-space-xs sm:gap-space-sm">
+          {/* Cmd+K Quick Filter Pill */}
           <button
             type="button"
             onClick={onOpenCommandPalette}
-            title="Open Command Palette (Ctrl+K / ⌘K)"
-            className="hidden sm:inline-flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 font-mono text-xs transition"
+            title="Search command palette (Ctrl+K / Cmd+K)"
+            className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-DEFAULT bg-surface-card border border-border-glass text-text-muted hover:text-text-primary hover:border-glow font-label-code text-label-code transition-all"
           >
-            <Command className="w-3.5 h-3.5 text-cyan-400" />
-            <span>Search</span>
-            <kbd className="px-1.5 py-0.5 text-[10px] rounded bg-slate-950 text-slate-400 border border-slate-800">
+            <Command className="w-3.5 h-3.5 text-primary-container" />
+            <span className="text-[11px]">Search</span>
+            <kbd className="px-1 py-0.5 rounded bg-surface-container-high text-[10px] text-text-muted border border-outline-variant/30">
               ⌘K
             </kbd>
           </button>
 
+          {/* Deploy Contact CTA */}
           <button
             type="button"
-            onClick={onToggleReducedMotion}
-            title={
-              reducedMotion
-                ? 'Reduced Motion Enabled (Click to enable 60FPS animations)'
-                : '60FPS Motion Enabled (Click to enable Reduced Motion)'
-            }
-            className={`px-2 py-1.5 rounded-lg border font-mono text-[11px] transition hidden md:inline-flex items-center gap-1 ${
-              reducedMotion
-                ? 'bg-amber-500/15 border-amber-500/40 text-amber-300'
-                : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-slate-200'
-            }`}
+            onClick={() => handleNavClick('contact')}
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-DEFAULT text-surface-base bg-primary-container font-label-code text-label-code font-bold hover:shadow-[0_0_16px_rgba(0,240,255,0.4)] active:scale-95 transition-all"
           >
-            <Sparkles className="w-3 h-3" />
-            <span>{reducedMotion ? 'Motion: Off' : '60FPS'}</span>
+            <Terminal className="w-3.5 h-3.5" />
+            <span>Deploy Contact</span>
           </button>
 
-          <button
-            type="button"
-            onClick={onToggleTheme}
-            aria-label="Toggle Dark or Editorial Light Theme"
-            title={
-              theme === 'dark'
-                ? 'Switch to Direction B (Minimal Editorial Light Mode)'
-                : 'Switch to Direction A+C (Premium Dark Engineering Mode)'
-            }
-            className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 transition"
-          >
-            {theme === 'dark' ? (
-              <Sun className="w-4 h-4 text-amber-300" />
-            ) : (
-              <Moon className="w-4 h-4 text-indigo-300" />
-            )}
-          </button>
-
+          {/* Resume Modal Trigger */}
           <button
             type="button"
             onClick={onOpenResumeModal}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-mono text-xs font-medium transition shadow-sm"
+            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-DEFAULT border border-border-glass text-text-primary hover:border-glow hover:text-primary-container font-label-code text-label-code active:scale-95 transition-all"
           >
-            <FileText className="w-3.5 h-3.5" />
-            <span>Résumé</span>
+            <FileText className="w-3.5 h-3.5 text-primary-container" />
+            <span>Resume.sys</span>
           </button>
 
-          {/* Mobile Hamburger Trigger */}
+          {/* Theme Toggle Button */}
           <button
             type="button"
-            onClick={() => setMobileMenuOpen((v) => !v)}
-            aria-label="Toggle navigation menu"
-            className="lg:hidden p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-300"
+            onClick={onToggleTheme}
+            title={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+            aria-label="Toggle theme"
+            className="p-1.5 rounded-DEFAULT border border-border-glass text-text-muted hover:text-primary-container hover:border-glow transition"
           >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {theme === 'dark' ? <Sun className="w-4 h-4 text-primary-container" /> : <Moon className="w-4 h-4" />}
+          </button>
+
+          {/* Mobile Menu Toggle Button */}
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen((o) => !o)}
+            aria-label="Toggle mobile menu"
+            className="lg:hidden p-1.5 rounded-DEFAULT border border-border-glass text-text-muted hover:text-text-primary"
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5 text-primary-container" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Dropdown Drawer */}
+      {/* Mobile Drawer Navigation */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-slate-800 bg-[#070b14] px-4 py-3 space-y-1.5">
-          {STATIC_NAV_ROUTES.map((route) => (
-            <button
-              key={route.id}
-              type="button"
-              onClick={() => handleNavClick(route.id)}
-              className="w-full text-left px-3 py-2 rounded-lg font-mono text-xs text-slate-200 hover:bg-slate-900 flex items-center justify-between"
-            >
-              <span>
-                <span className="text-indigo-400 mr-2">{route.number}</span>
-                {route.label}
-              </span>
-            </button>
-          ))}
-          <div className="pt-2 border-t border-slate-800 flex items-center justify-between gap-2">
+        <div className="lg:hidden border-t border-border-glass bg-surface-base/95 backdrop-blur-xl px-4 py-4 space-y-2">
+          <div className="grid grid-cols-2 gap-2">
+            {NAV_ITEMS.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => handleNavClick(item.id)}
+                className={`p-2.5 rounded-DEFAULT text-left font-label-code text-label-code border ${
+                  activeSection === item.id
+                    ? 'bg-primary-container/10 border-primary-container text-primary-container font-bold'
+                    : 'border-border-glass text-text-muted hover:text-text-primary'
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+          <div className="pt-2 flex items-center justify-between gap-2">
             <button
               type="button"
               onClick={() => {
                 setMobileMenuOpen(false);
-                onOpenCommandPalette();
+                onOpenResumeModal();
               }}
-              className="flex-1 py-2 px-3 rounded-lg bg-slate-900 border border-slate-800 font-mono text-xs text-cyan-300 text-center"
+              className="flex-1 py-2 px-3 rounded-DEFAULT border border-border-glass text-text-primary font-label-code text-label-code text-center"
             >
-              Search Projects (⌘K)
+              Resume.sys
             </button>
             <button
               type="button"
-              onClick={onToggleReducedMotion}
-              className="py-2 px-3 rounded-lg bg-slate-900 border border-slate-800 font-mono text-xs text-slate-300"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                handleNavClick('contact');
+              }}
+              className="flex-1 py-2 px-3 rounded-DEFAULT bg-primary-container text-surface-base font-label-code text-label-code font-bold text-center"
             >
-              {reducedMotion ? 'Motion: Reduced' : 'Motion: 60FPS'}
+              Deploy Contact
             </button>
           </div>
         </div>
@@ -214,4 +211,3 @@ export const Navbar: React.FC<NavbarProps> = ({
     </header>
   );
 };
-

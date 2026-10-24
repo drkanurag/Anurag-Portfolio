@@ -155,7 +155,7 @@ export function App() {
   const handleExploreProjects = (domainFilter?: ProjectDomain) => {
     if (domainFilter) {
       setSelectedDomain(domainFilter);
-      const catalogueEl = document.getElementById('all-projects-catalogue');
+      const catalogueEl = document.getElementById('catalogue') || document.getElementById('all-projects-catalogue');
       if (catalogueEl) {
         catalogueEl.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth' });
         return;
@@ -167,7 +167,7 @@ export function App() {
   const activeCaseStudyProject = getProjectBySlug(activeCaseStudySlug);
 
   return (
-    <div className="min-h-screen bg-[#060911] text-slate-100 bg-blueprint-grid selection:bg-cyan-500/30 selection:text-cyan-200">
+    <div className="min-h-screen bg-surface-base text-text-primary antialiased selection:bg-primary-container selection:text-surface-base relative overflow-x-hidden">
       {/* Skip to Main Content Link for Keyboard Accessibility */}
       <a
         href="#main-content"

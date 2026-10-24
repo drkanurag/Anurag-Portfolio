@@ -1,17 +1,5 @@
-import React, { useState } from 'react';
-import {
-  ArrowUpRight,
-  BrainCircuit,
-  Briefcase,
-  CheckCircle2,
-  Database,
-  Layout,
-  Server,
-  ShieldCheck,
-} from 'lucide-react';
-import { SKILL_CATEGORIES } from '../data/portfolioData';
-import { getProjectBySlug } from '../lib/catalogueEngine';
-import { ProjectSlug, SkillDomainId } from '../types/portfolio';
+import React from 'react';
+import { ProjectSlug } from '../types/portfolio';
 
 interface TechnicalExpertiseSectionProps {
   onOpenCaseStudy: (slug: ProjectSlug) => void;
@@ -20,169 +8,246 @@ interface TechnicalExpertiseSectionProps {
 export const TechnicalExpertiseSection: React.FC<TechnicalExpertiseSectionProps> = ({
   onOpenCaseStudy,
 }) => {
-  const [activeDomainId, setActiveDomainId] = useState<SkillDomainId | 'all'>('all');
-
-  const visibleCategories =
-    activeDomainId === 'all'
-      ? SKILL_CATEGORIES
-      : SKILL_CATEGORIES.filter((c) => c.id === activeDomainId);
-
-  const renderDomainIcon = (iconName: string) => {
-    switch (iconName) {
-      case 'BrainCircuit':
-        return <BrainCircuit className="w-5 h-5 text-cyan-400" />;
-      case 'Server':
-        return <Server className="w-5 h-5 text-indigo-400" />;
-      case 'Database':
-        return <Database className="w-5 h-5 text-emerald-400" />;
-      case 'Layout':
-        return <Layout className="w-5 h-5 text-violet-400" />;
-      case 'Briefcase':
-        return <Briefcase className="w-5 h-5 text-amber-400" />;
-      default:
-        return <ShieldCheck className="w-5 h-5 text-cyan-400" />;
-    }
-  };
-
   return (
-    <section
-      id="skills"
-      className="py-20 sm:py-24 border-b border-slate-800/80 relative"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
-          <div>
-            <div className="font-mono text-xs uppercase tracking-widest text-indigo-400 mb-2">
-              03 / TECHNICAL EXPERTISE BY ENGINEERING DOMAIN
-            </div>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">
-              Evidence-Backed Engineering Competencies
-            </h2>
-            <p className="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl">
-              Grouped by engineering domain rather than arbitrary proficiency percentages. Every
-              capability is linked directly to the production work at Mphasis, MEC Tech, or
-              verified project case studies where it was applied.
-            </p>
+    <section className="py-space-2xl max-w-[1320px] mx-auto px-space-md sm:px-space-xl" id="skills">
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-space-xl gap-4 border-b border-border-glass pb-space-md">
+        <div>
+          <div className="flex items-center gap-2 text-primary-container font-label-badge text-label-badge mb-1 uppercase tracking-widest">
+            <span className="material-symbols-outlined text-sm">memory</span>
+            CORE CAPABILITIES // ARCHITECTURAL PODS
           </div>
-
-          {/* Domain Selector Tabs */}
-          <div className="flex flex-wrap gap-1.5">
-            <button
-              type="button"
-              onClick={() => setActiveDomainId('all')}
-              className={`px-3 py-1.5 rounded-lg font-mono text-xs border transition ${
-                activeDomainId === 'all'
-                  ? 'bg-indigo-600 text-white border-indigo-500 font-semibold'
-                  : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-white'
-              }`}
-            >
-              All 6 Domains
-            </button>
-            {SKILL_CATEGORIES.map((cat) => (
-              <button
-                key={cat.id}
-                type="button"
-                onClick={() => setActiveDomainId(cat.id)}
-                className={`px-3 py-1.5 rounded-lg font-mono text-xs border transition ${
-                  activeDomainId === cat.id
-                    ? 'bg-cyan-500/20 text-cyan-200 border-cyan-400 font-semibold'
-                    : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-white'
-                }`}
-              >
-                {cat.title.split(',')[0]}
-              </button>
-            ))}
-          </div>
+          <h2 className="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-text-primary">
+            Evidence-Backed Engineering Competencies
+          </h2>
         </div>
+        <p className="text-body-sm font-body-sm text-text-muted max-w-md">
+          Proven technical execution verified by production releases at Mphasis, high-throughput
+          systems, and peer-reviewed algorithmic contributions.
+        </p>
+      </div>
 
-        {/* Domain Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {visibleCategories.map((category) => (
-            <div
-              key={category.id}
-              className="rounded-2xl bg-[#090e1c]/95 border border-slate-800/90 p-6 flex flex-col justify-between"
-            >
+      {/* Four Distinct Glassmorphic Engineering Pods */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+        {/* Pod 1: AI, Deep Learning & Computer Vision */}
+        <div className="bg-surface-card/75 border border-border-glass rounded-xl p-space-lg glow-border transition-all">
+          <div className="flex items-center justify-between border-b border-border-glass pb-space-sm mb-space-md">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-primary-container/10 border border-primary-container/30 flex items-center justify-center text-primary-container">
+                <span className="material-symbols-outlined">visibility</span>
+              </div>
               <div>
-                <div className="flex items-start justify-between gap-3 pb-4 mb-4 border-b border-slate-800/80">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800">
-                      {renderDomainIcon(category.iconName)}
-                    </div>
-                    <div>
-                      <h3 className="font-display text-lg font-bold text-white">
-                        {category.title}
-                      </h3>
-                      <div className="font-mono text-xs text-indigo-300">
-                        {category.subtitle}
-                      </div>
-                    </div>
-                  </div>
-                  <span className="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 font-mono text-[11px] text-slate-400 shrink-0">
-                    {category.skills.length} Core Skills
-                  </span>
-                </div>
-
-                <p className="text-xs text-slate-400 mb-4 leading-relaxed">
-                  {category.description}
-                </p>
-
-                <div className="space-y-3">
-                  {category.skills.map((skill) => (
-                    <div
-                      key={skill.name}
-                      className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800/80 hover:border-slate-700 transition"
-                    >
-                      <div className="flex flex-wrap items-center justify-between gap-2">
-                        <div className="flex items-center gap-2">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                          <span className="font-mono text-xs sm:text-sm font-semibold text-white">
-                            {skill.name}
-                          </span>
-                        </div>
-                        {skill.isCoreHighlight && (
-                          <span className="px-2 py-0.5 rounded bg-cyan-500/15 border border-cyan-500/30 font-mono text-[10px] text-cyan-300">
-                            Primary Specialization
-                          </span>
-                        )}
-                      </div>
-
-                      <p className="text-xs text-slate-300 mt-1.5 pl-5">
-                        {skill.roleContext}
-                      </p>
-
-                      {/* Linked Project Evidence Pills (O(1) Map Lookup) */}
-                      {skill.appliedInProjects && skill.appliedInProjects.length > 0 && (
-                        <div className="mt-2.5 pl-5 flex flex-wrap items-center gap-1.5">
-                          <span className="font-mono text-[10px] text-slate-500">
-                            Verified in:
-                          </span>
-                          {skill.appliedInProjects.map((slug) => {
-                            const proj = getProjectBySlug(slug);
-                            if (!proj) return null;
-                            return (
-                              <button
-                                key={slug}
-                                type="button"
-                                onClick={() => onOpenCaseStudy(slug)}
-                                className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-slate-950 hover:bg-indigo-950/60 border border-slate-800 hover:border-indigo-500/40 font-mono text-[10px] text-indigo-300 transition"
-                              >
-                                <span>{proj.shortTitle}</span>
-                                <ArrowUpRight className="w-2.5 h-2.5" />
-                              </button>
-                            );
-                          })}
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
+                <h3 className="text-title-md font-title-md text-text-primary">
+                  AI, Deep Learning &amp; Computer Vision
+                </h3>
+                <span className="font-label-badge text-label-badge text-primary-container">
+                  EDGE &amp; CLOUD INFERENCE
+                </span>
               </div>
             </div>
-          ))}
+            <button
+              type="button"
+              onClick={() => onOpenCaseStudy('roadvision-ai')}
+              className="text-xs font-label-code text-primary-container hover:underline"
+            >
+              RoadVision AI →
+            </button>
+          </div>
+          <ul className="space-y-3 font-label-code text-label-code">
+            <li className="flex items-start gap-2">
+              <span className="text-primary-container mt-0.5">&gt;</span>
+              <div>
+                <strong className="text-text-primary">Deep Learning Frameworks: </strong>
+                <span className="text-text-muted">
+                  PyTorch, TorchVision, TensorFlow 2.x, Keras, HuggingFace Transformers.
+                </span>
+              </div>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-primary-container mt-0.5">&gt;</span>
+              <div>
+                <strong className="text-text-primary">Computer Vision &amp; Detection: </strong>
+                <span className="text-text-muted">
+                  YOLO (v5, v8), Weighted Boxes Fusion (WBF), OpenCV, Optical Flow, Morphological Black-Hat fissure density.
+                </span>
+              </div>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-primary-container mt-0.5">&gt;</span>
+              <div>
+                <strong className="text-text-primary">Hardware Acceleration: </strong>
+                <span className="text-text-muted">
+                  ONNX Runtime (CPU/INT8 execution), CUDA 12.x, TensorRT quantization pipelines.
+                </span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        {/* Pod 2: Enterprise Software Engineering & Cloud */}
+        <div className="bg-surface-card/75 border border-border-glass rounded-xl p-space-lg glow-border transition-all">
+          <div className="flex items-center justify-between border-b border-border-glass pb-space-sm mb-space-md">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-secondary-container/10 border border-secondary-container/30 flex items-center justify-center text-secondary">
+                <span className="material-symbols-outlined">dns</span>
+              </div>
+              <div>
+                <h3 className="text-title-md font-title-md text-text-primary">
+                  Enterprise Backend &amp; Cloud
+                </h3>
+                <span className="font-label-badge text-label-badge text-secondary">
+                  DISTRIBUTED ARCHITECTURES
+                </span>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={() => onOpenCaseStudy('datalens-global')}
+              className="text-xs font-label-code text-secondary hover:underline"
+            >
+              DataLens →
+            </button>
+          </div>
+          <ul className="space-y-3 font-label-code text-label-code">
+            <li className="flex items-start gap-2">
+              <span className="text-secondary mt-0.5">&gt;</span>
+              <div>
+                <strong className="text-text-primary">Enterprise Core: </strong>
+                <span className="text-text-muted">
+                  Java 17, Spring Boot 3, Spring Security (OAuth2/JWT), FastAPI, Python AsyncIO.
+                </span>
+              </div>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-secondary mt-0.5">&gt;</span>
+              <div>
+                <strong className="text-text-primary">Microservices &amp; Messaging: </strong>
+                <span className="text-text-muted">
+                  REST, Celery task workers, Redis Pub/Sub, Resilience patterns, Distributed Tracing.
+                </span>
+              </div>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-secondary mt-0.5">&gt;</span>
+              <div>
+                <strong className="text-text-primary">Containers &amp; DevOps: </strong>
+                <span className="text-text-muted">
+                  Docker, Docker Compose multi-service topologies, GitHub Actions CI/CD gates.
+                </span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        {/* Pod 3: Distributed Data & High-Throughput DBs */}
+        <div className="bg-surface-card/75 border border-border-glass rounded-xl p-space-lg glow-border transition-all">
+          <div className="flex items-center justify-between border-b border-border-glass pb-space-sm mb-space-md">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-tertiary-container/10 border border-tertiary-container/30 flex items-center justify-center text-tertiary-container">
+                <span className="material-symbols-outlined">dataset</span>
+              </div>
+              <div>
+                <h3 className="text-title-md font-title-md text-text-primary">
+                  Data Engineering &amp; High-Throughput DBs
+                </h3>
+                <span className="font-label-badge text-label-badge text-tertiary-container">
+                  VECTOR &amp; RELATIONAL STORAGE
+                </span>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={() => onOpenCaseStudy('rooted-food-platform')}
+              className="text-xs font-label-code text-tertiary-container hover:underline"
+            >
+              Rooted 3NF →
+            </button>
+          </div>
+          <ul className="space-y-3 font-label-code text-label-code">
+            <li className="flex items-start gap-2">
+              <span className="text-tertiary-container mt-0.5">&gt;</span>
+              <div>
+                <strong className="text-text-primary">Relational &amp; Caching: </strong>
+                <span className="text-text-muted">
+                  PostgreSQL 18 (Row-Level Security, B-Tree &amp; GiST indexing), Redis Cluster (Pub/Sub).
+                </span>
+              </div>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-tertiary-container mt-0.5">&gt;</span>
+              <div>
+                <strong className="text-text-primary">Vector &amp; Semantic Search: </strong>
+                <span className="text-text-muted">
+                  pgvector, ChromaDB, FAISS, Inverted Indexing, Vector Embeddings similarity.
+                </span>
+              </div>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-tertiary-container mt-0.5">&gt;</span>
+              <div>
+                <strong className="text-text-primary">Data Governance: </strong>
+                <span className="text-text-muted">
+                  3NF normalization, RBAC schema isolation, query performance profiling, automated DB migrations.
+                </span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        {/* Pod 4: Frontend Engineering & Interactive Systems */}
+        <div className="bg-surface-card/75 border border-border-glass rounded-xl p-space-lg glow-border transition-all">
+          <div className="flex items-center justify-between border-b border-border-glass pb-space-sm mb-space-md">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-accent-purple/10 border border-accent-purple/30 flex items-center justify-center text-accent-purple">
+                <span className="material-symbols-outlined">terminal</span>
+              </div>
+              <div>
+                <h3 className="text-title-md font-title-md text-text-primary">
+                  Interactive Systems &amp; Interfaces
+                </h3>
+                <span className="font-label-badge text-label-badge text-accent-purple">
+                  HIGH DENSITY UIs
+                </span>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={() => onOpenCaseStudy('aether-weather')}
+              className="text-xs font-label-code text-accent-purple hover:underline"
+            >
+              Aether UI →
+            </button>
+          </div>
+          <ul className="space-y-3 font-label-code text-label-code">
+            <li className="flex items-start gap-2">
+              <span className="text-accent-purple mt-0.5">&gt;</span>
+              <div>
+                <strong className="text-text-primary">Modern Web Stacks: </strong>
+                <span className="text-text-muted">
+                  React 18, TypeScript, Tailwind CSS, Vite, Radix UI foundations.
+                </span>
+              </div>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-accent-purple mt-0.5">&gt;</span>
+              <div>
+                <strong className="text-text-primary">Graphics &amp; Telemetry: </strong>
+                <span className="text-text-muted">
+                  WebGL Shaders, interactive SVG canvas visualizers, dynamic bounding box HUDs.
+                </span>
+              </div>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-accent-purple mt-0.5">&gt;</span>
+              <div>
+                <strong className="text-text-primary">Architecture: </strong>
+                <span className="text-text-muted">
+                  Atomic design systems, high-density HUD dashboards, monospaced terminal emulators.
+                </span>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
   );
 };
-

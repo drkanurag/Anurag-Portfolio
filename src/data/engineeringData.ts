@@ -122,3 +122,4 @@ export const PROJECT_ALGORITHMS: readonly DataStructureSpec[] = [
     rationale: 'GiST indexing avoids full-table spatial scans across geographic coordinates, pairing with B-Tree indices on expiry timestamps for instant nearest-neighbor dispatch.',
   },
 ];
+

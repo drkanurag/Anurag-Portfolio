@@ -9,66 +9,76 @@ interface SdlcSectionProps {
 }
 
 const STATUS_STYLE = {
-  Done: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
-  Partly: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
-  Planned: 'bg-slate-700/40 text-slate-300 border-slate-600',
+  Done: 'bg-tertiary-container/20 text-tertiary-container border-tertiary-container/40',
+  Partly: 'bg-secondary-container/20 text-secondary border-secondary-container/40',
+  Planned: 'bg-surface-container-high text-text-muted border-outline-variant/40',
 } as const;
 
 export const SdlcSection: React.FC<SdlcSectionProps> = ({ onOpenCaseStudy }) => (
-  <section id="sdlc" className="py-20 sm:py-24 border-b border-slate-800/80">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="mb-10">
-        <div className="font-mono text-xs uppercase tracking-widest text-cyan-400 mb-2">
-          06 / HOW I BUILD (SDLC)
+  <section id="sdlc" className="py-space-2xl max-w-[1320px] mx-auto px-space-md sm:px-space-xl border-b border-border-glass">
+    <div className="flex flex-col md:flex-row md:items-end justify-between mb-space-xl gap-4 border-b border-border-glass pb-space-md">
+      <div>
+        <div className="flex items-center gap-2 text-primary-container font-label-badge text-label-badge mb-1 uppercase tracking-widest">
+          <span className="material-symbols-outlined text-sm">developer_mode</span>
+          ENGINEERING LIFECYCLE // 8 SDLC DISCIPLINES
         </div>
-        <h2 className="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">
+        <h2 className="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-text-primary">
           From Requirements to Running Software
         </h2>
-        <p className="text-slate-400 text-sm sm:text-base mt-2 max-w-3xl">
-          The eight stages I follow, with what I actually did at each one and what is still a gap.
-        </p>
       </div>
+      <p className="text-body-sm font-body-sm text-text-muted max-w-md">
+        The eight structured stages I follow with concrete evidence from production and project architectures.
+      </p>
+    </div>
 
-      <ol className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {SDLC_PHASES.map((p) => {
-          const project = p.caseStudy ? PROJECT_BY_SLUG.get(p.caseStudy) : undefined;
-          return (
-            <li key={p.id} className="rounded-2xl bg-[#090e1c] border border-slate-800/90 p-5 flex flex-col">
+    <ol className="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+      {SDLC_PHASES.map((p) => {
+        const project = p.caseStudy ? PROJECT_BY_SLUG.get(p.caseStudy) : undefined;
+        return (
+          <li
+            key={p.id}
+            className="rounded-xl bg-surface-card/80 border border-border-glass p-space-md md:p-5 flex flex-col justify-between glow-border transition-all"
+          >
+            <div>
               <div className="flex items-center justify-between gap-2 mb-2">
-                <span className="font-mono text-xs text-indigo-300">
-                  {p.number} · {p.title}
+                <span className="font-label-code text-label-code text-primary-container font-semibold">
+                  {`${p.number} // ${p.title.toUpperCase()}`}
                 </span>
-                <span className={`px-2 py-0.5 rounded border font-mono text-[10px] ${STATUS_STYLE[p.status]}`}>
+                <span className={`px-2 py-0.5 rounded border font-label-badge text-[10px] ${STATUS_STYLE[p.status]}`}>
                   {p.status}
                 </span>
               </div>
-              <p className="text-sm text-slate-300 leading-relaxed">{p.whatIDo}</p>
+              <p className="text-body-sm font-body-sm text-text-primary leading-relaxed">{p.whatIDo}</p>
               {p.evidence.length > 0 && (
-                <ul className="mt-3 space-y-1.5 text-xs text-slate-400 list-disc list-inside">
+                <ul className="mt-3 space-y-1.5 text-xs text-text-muted font-label-code">
                   {p.evidence.map((e) => (
-                    <li key={e}>{e}</li>
+                    <li key={e} className="flex items-start gap-1.5">
+                      <span className="text-primary-container">&gt;</span>
+                      <span>{e}</span>
+                    </li>
                   ))}
                 </ul>
               )}
               {p.gap && (
-                <p className="mt-3 p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/30 text-xs text-amber-200">
-                  Next step: {p.gap}
+                <p className="mt-3 p-2.5 rounded bg-surface-container-low border border-border-glass font-label-code text-xs text-secondary">
+                  Target Next Step: {p.gap}
                 </p>
               )}
-              {project && (
-                <button
-                  type="button"
-                  onClick={() => onOpenCaseStudy(project.slug)}
-                  className="mt-3 inline-flex items-center gap-1.5 self-start font-mono text-xs text-cyan-300 hover:underline"
-                >
-                  <span>See it in {project.shortTitle}</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
-              )}
-            </li>
-          );
-        })}
-      </ol>
-    </div>
+            </div>
+
+            {project && (
+              <button
+                type="button"
+                onClick={() => onOpenCaseStudy(project.slug)}
+                className="mt-4 inline-flex items-center gap-1.5 self-start font-label-code text-label-code text-primary-container hover:underline"
+              >
+                <span>Inspect in {project.shortTitle}</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            )}
+          </li>
+        );
+      })}
+    </ol>
   </section>
 );

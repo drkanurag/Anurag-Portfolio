@@ -56,205 +56,198 @@ export const EngineeringApproachSection: React.FC<EngineeringApproachSectionProp
   return (
     <section
       id="architecture"
-      className="py-20 sm:py-24 border-b border-slate-800/80 relative"
+      className="py-space-2xl max-w-[1320px] mx-auto px-space-md sm:px-space-xl border-b border-border-glass"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Heading */}
-        <div className="mb-12">
-          <div className="font-mono text-xs uppercase tracking-widest text-cyan-400 mb-2">
-            07 / SYSTEM DESIGN &amp; DATA STRUCTURES
+      {/* Section Heading */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-space-xl gap-4 border-b border-border-glass pb-space-md">
+        <div>
+          <div className="flex items-center gap-2 text-primary-container font-label-badge text-label-badge mb-1 uppercase tracking-widest">
+            <span className="material-symbols-outlined text-sm">hub</span>
+            SYSTEM DESIGN // COMPLEXITY MATRIX
           </div>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">
+          <h2 className="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-text-primary tracking-tight">
             Pragmatic System Architecture &amp; Algorithmic Rigor
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base mt-2 max-w-3xl">
-            Good engineering means matching architectural complexity to actual system requirements:
-            using clean O(1) data structures and static CDN delivery for content-driven web
-            experiences, while deploying multi-service FastAPI/Spring Boot backends and PostgreSQL
-            18 schemas where real domain workloads demand them.
-          </p>
         </div>
+        <p className="text-body-sm font-body-sm text-text-muted max-w-md">
+          Matching architectural complexity to domain constraints: clean O(1) in-memory structures
+          on the client, with resilient microservices and relational normalization on the backend.
+        </p>
+      </div>
 
-        {/* 5-Layer Portfolio System Architecture Stack */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
-          <div className="lg:col-span-7 rounded-2xl bg-[#090e1c]/95 border border-slate-800/90 p-6">
-            <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-800">
-              <div className="flex items-center gap-2">
-                <Layers className="w-4 h-4 text-indigo-400" />
-                <h3 className="font-display text-lg font-bold text-white">
-                  5-Layer Portfolio System Architecture
-                </h3>
-              </div>
-              <span className="font-mono text-xs text-cyan-300">Static CDN + Typed Engine</span>
-            </div>
-
-            <div className="space-y-3">
-              {ARCHITECTURE_LAYERS.map((item) => (
-                <div
-                  key={item.layer}
-                  className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800/90 hover:border-indigo-500/40 transition"
-                >
-                  <div className="flex flex-wrap items-center justify-between gap-2">
-                    <span className="font-mono text-xs font-bold text-indigo-300">
-                      {item.layer}
-                    </span>
-                    <span className="font-mono text-[11px] text-cyan-300 bg-slate-950 px-2 py-0.5 rounded border border-slate-800">
-                      {item.tech}
-                    </span>
-                  </div>
-                  <p className="text-xs text-slate-300 mt-1.5 leading-relaxed">
-                    {item.responsibility}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right Column: Architectural Decision Record & Live O(1) Map Inspector */}
-          <div className="lg:col-span-5 flex flex-col justify-between gap-6">
-            {/* ADR Card */}
-            <div className="rounded-2xl bg-[#090e1c]/95 border border-slate-800/90 p-6">
-              <div className="font-mono text-xs uppercase tracking-wider text-amber-400 mb-2">
-                ARCHITECTURAL DECISION RECORD (ADR-01)
-              </div>
-              <h3 className="font-display text-lg font-bold text-white mb-2">
-                When to Use Static Delivery vs. Microservices
+      {/* 5-Layer Portfolio System Architecture Stack */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-lg mb-space-xl">
+        <div className="lg:col-span-7 rounded-xl bg-surface-card/80 border border-border-glass p-space-md md:p-space-lg glow-border transition-all">
+          <div className="flex items-center justify-between mb-4 pb-3 border-b border-border-glass">
+            <div className="flex items-center gap-2">
+              <Layers className="w-4 h-4 text-primary-container" />
+              <h3 className="font-title-md text-title-md font-bold text-text-primary">
+                5-Layer Portfolio System Architecture
               </h3>
-              <p className="text-xs text-slate-300 leading-relaxed mb-3">
-                A personal portfolio is primarily a content and interactive demonstration platform.
-                Introducing a distributed microservices cluster or database just to render 10
-                project descriptions would add latency, operational cost, and cold-start failure
-                modes without user benefit.
-              </p>
-              <div className="space-y-2 text-xs font-mono">
-                <div className="p-2.5 rounded-lg bg-emerald-950/30 border border-emerald-500/30 text-emerald-200">
-                  ✓ Core Portfolio: Static CDN delivery + O(1) client Map/Set indices for instant navigation.
-                </div>
-                <div className="p-2.5 rounded-lg bg-cyan-950/30 border border-cyan-500/30 text-cyan-200">
-                  ✓ Domain Projects (RoadVision AI, DataLens, AETHER): Multi-service Python FastAPI &amp; Java Spring Boot backends where real CV inference, RLS/CLS governance, and psychrometric engines justify service isolation.
-                </div>
-              </div>
             </div>
-
-            {/* Interactive Live O(1) Map Lookup Inspector */}
-            <div className="rounded-2xl bg-[#090e1c]/95 border border-cyan-500/30 p-6">
-              <div className="flex items-center justify-between mb-3">
-                <div className="font-mono text-xs uppercase tracking-wider text-cyan-300 font-semibold">
-                  Live O(1) Map Lookup Inspector
-                </div>
-                <span className="font-mono text-[11px] text-emerald-400">
-                  PROJECT_BY_SLUG.get(slug)
-                </span>
-              </div>
-
-              <div className="flex flex-wrap gap-1.5 mb-3">
-                {PROJECTS_CATALOGUE.slice(0, 5).map((p) => (
-                  <button
-                    key={p.slug}
-                    type="button"
-                    onClick={() => setTestSlug(p.slug)}
-                    className={`px-2.5 py-1 rounded font-mono text-[11px] border transition ${
-                      testSlug === p.slug
-                        ? 'bg-cyan-500/20 border-cyan-400 text-cyan-200'
-                        : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    {p.slug}
-                  </button>
-                ))}
-              </div>
-
-              {resolvedProject && (
-                <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 font-mono text-xs space-y-1.5">
-                  <div className="text-emerald-400">
-                    → Resolved in O(1) via ReadonlyMap&lt;ProjectSlug, Project&gt;
-                  </div>
-                  <div className="text-white font-semibold">{resolvedProject.title}</div>
-                  <div className="text-[11px] text-slate-400 break-words">
-                    <span className="text-indigo-300">Search Index Blob: </span>
-                    {indexedTokensPreview}
-                  </div>
-                  <div className="pt-1">
-                    <button
-                      type="button"
-                      onClick={() => onOpenCaseStudy(resolvedProject.slug)}
-                      className="text-cyan-300 hover:underline text-[11px]"
-                    >
-                      Open {resolvedProject.shortTitle} Case Study →
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Algorithms & Data Structures in My Projects Table */}
-        <div className="rounded-2xl bg-[#090e1c]/95 border border-slate-800/90 p-6 sm:p-8 mb-12">
-          <h3 className="font-display text-xl font-bold text-white mb-4">
-            Algorithms &amp; Data Structures in My Projects
-          </h3>
-          <div className="overflow-x-auto rounded-xl border border-slate-800">
-            <table className="w-full text-left border-collapse text-xs">
-              <thead>
-                <tr className="bg-slate-900/95 border-b border-slate-800 font-mono text-slate-400">
-                  <th className="p-3.5">Problem</th>
-                  <th className="p-3.5">Structure / Algorithm</th>
-                  <th className="p-3.5">Signature</th>
-                  <th className="p-3.5">Complexity</th>
-                  <th className="p-3.5">Why</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-800/80 bg-[#070b14]">
-                {PROJECT_ALGORITHMS.map((a) => (
-                  <tr key={a.requirement} className="text-slate-300">
-                    <td className="p-3.5 font-semibold text-white">{a.requirement}</td>
-                    <td className="p-3.5 font-mono text-cyan-300">{a.structure}</td>
-                    <td className="p-3.5 font-mono text-indigo-300">{a.typescriptSignature}</td>
-                    <td className="p-3.5 font-mono text-emerald-300">{a.complexity}</td>
-                    <td className="p-3.5 text-slate-400">{a.rationale}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        {/* Data Structures Specification Table */}
-        <div className="rounded-2xl bg-[#090e1c]/95 border border-slate-800/90 p-6 sm:p-8">
-          <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
-            <h3 className="font-display text-xl font-bold text-white">
-              Data Structures Implemented in This Portfolio (<code className="font-mono text-cyan-300">src/lib/catalogueEngine.ts</code>)
-            </h3>
-            <span className="font-mono text-xs text-emerald-400">
-              Covered by automated unit tests
+            <span className="font-label-code text-xs text-primary-container">
+              Static CDN + Typed Engine
             </span>
           </div>
 
-          <div className="overflow-x-auto rounded-xl border border-slate-800">
-            <table className="w-full text-left border-collapse text-xs">
-              <thead>
-                <tr className="bg-slate-900/95 border-b border-slate-800 font-mono text-slate-400">
-                  <th className="p-3.5">Requirement</th>
-                  <th className="p-3.5">Data Structure</th>
-                  <th className="p-3.5">TypeScript Signature</th>
-                  <th className="p-3.5">Time Complexity</th>
-                  <th className="p-3.5">Engineering Rationale</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-800/80 bg-[#070b14]">
-                {PORTFOLIO_DATA_STRUCTURES.map((ds) => (
-                  <tr key={ds.requirement} className="text-slate-300">
-                    <td className="p-3.5 font-mono font-semibold text-white">{ds.requirement}</td>
-                    <td className="p-3.5 font-mono text-cyan-300">{ds.structure}</td>
-                    <td className="p-3.5 font-mono text-indigo-300">{ds.typescriptSignature}</td>
-                    <td className="p-3.5 font-mono text-emerald-300">{ds.complexity}</td>
-                    <td className="p-3.5 text-slate-400">{ds.rationale}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="space-y-3">
+            {ARCHITECTURE_LAYERS.map((item) => (
+              <div
+                key={item.layer}
+                className="p-3.5 rounded-lg bg-surface-container-lowest border border-border-glass hover:border-glow transition-all"
+              >
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <span className="font-label-code text-xs font-bold text-primary-container">
+                    {item.layer}
+                  </span>
+                  <span className="font-label-code text-[11px] text-text-muted">
+                    {item.tech}
+                  </span>
+                </div>
+                <p className="text-body-sm font-body-sm text-text-muted mt-1 leading-relaxed">
+                  {item.responsibility}
+                </p>
+              </div>
+            ))}
           </div>
+        </div>
+
+        {/* Live O(1) Map Hash Lookup Simulator */}
+        <div className="lg:col-span-5 rounded-xl bg-surface-card/80 border border-border-glass p-space-md md:p-space-lg flex flex-col justify-between glow-border transition-all">
+          <div>
+            <div className="flex items-center justify-between mb-3 pb-3 border-b border-border-glass">
+              <div className="font-label-badge text-label-badge text-tertiary-container uppercase">
+                O(1) Map Hash Lookup Inspector
+              </div>
+              <span className="font-label-code text-[10px] text-tertiary-container bg-surface-container-high px-2 py-0.5 rounded">
+                Hash Map Target
+              </span>
+            </div>
+
+            <p className="text-body-sm font-body-sm text-text-muted mb-4">
+              Select a project slug to observe direct Hash-Map access without $O(N)$ linear scans.
+            </p>
+
+            {/* Slug Selector Buttons */}
+            <div className="flex flex-wrap gap-1.5 mb-4">
+              {PROJECTS_CATALOGUE.slice(0, 5).map((p) => (
+                <button
+                  key={p.slug}
+                  type="button"
+                  onClick={() => setTestSlug(p.slug)}
+                  className={`px-2.5 py-1 rounded font-label-code text-xs border transition ${
+                    testSlug === p.slug
+                      ? 'bg-primary-container text-surface-base border-primary-container font-bold shadow-[0_0_10px_rgba(0,240,255,0.4)]'
+                      : 'bg-surface-container-lowest border-border-glass text-text-muted hover:text-text-primary'
+                  }`}
+                >
+                  {p.slug}
+                </button>
+              ))}
+            </div>
+
+            {/* Resolved Memory Node */}
+            {resolvedProject && (
+              <div className="p-3.5 rounded bg-surface-container-lowest border border-border-glass space-y-2 font-label-code text-label-code">
+                <div className="text-[11px] text-text-muted">
+                  MAP_LOOKUP_KEY: <span className="text-primary-container">&quot;{testSlug}&quot;</span>
+                </div>
+                <div className="text-xs text-text-primary font-semibold">
+                  RESOLVED_TITLE: {resolvedProject.shortTitle}
+                </div>
+                <div className="text-[11px] text-secondary">
+                  DOMAIN: {resolvedProject.primaryDomain} · ORDER: #{resolvedProject.order}
+                </div>
+                <div className="text-[10px] text-text-muted border-t border-border-glass pt-2 truncate">
+                  TOKEN_INDEX: {indexedTokensPreview}
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className="pt-4 border-t border-border-glass flex items-center justify-between">
+            <span className="font-label-code text-xs text-text-muted">Direct Case Study Access:</span>
+            <button
+              type="button"
+              onClick={() => onOpenCaseStudy(testSlug)}
+              className="px-3 py-1.5 rounded bg-primary-container text-surface-base font-label-code text-xs font-bold hover:shadow-[0_0_12px_rgba(0,240,255,0.4)] transition-all"
+            >
+              Open {testSlug} →
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Data Structures & Complexity Table Across Featured Projects */}
+      <div className="rounded-xl bg-surface-card/80 border border-border-glass p-space-md md:p-space-lg mb-space-xl glow-border transition-all">
+        <div className="mb-4">
+          <div className="font-label-badge text-label-badge text-primary-container mb-1">
+            DATA STRUCTURES &amp; ALGORITHMS IN PRODUCTION
+          </div>
+          <h3 className="font-title-md text-title-md font-bold text-text-primary">
+            Algorithms &amp; Data Structures by Project
+          </h3>
+          <p className="text-body-sm font-body-sm text-text-muted mt-1">
+            Concrete algorithmic decisions implemented across each project, with time and space complexity bounds.
+          </p>
+        </div>
+
+        <div className="overflow-x-auto rounded border border-border-glass">
+          <table className="w-full text-left border-collapse font-label-code text-xs">
+            <thead>
+              <tr className="bg-surface-container-lowest border-b border-border-glass text-text-muted">
+                <th className="p-3">Requirement / Project</th>
+                <th className="p-3">Data Structure / Algorithm</th>
+                <th className="p-3">Complexity Bounds</th>
+                <th className="p-3">Engineering Purpose &amp; Rationale</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border-glass/60 bg-surface-base/80">
+              {PROJECT_ALGORITHMS.map((algo) => (
+                <tr key={`${algo.requirement}-${algo.structure}`} className="hover:bg-surface-container-high/40 transition">
+                  <td className="p-3 font-semibold text-text-primary">{algo.requirement}</td>
+                  <td className="p-3 text-primary-container">{algo.structure}</td>
+                  <td className="p-3 font-mono text-tertiary-container">{algo.complexity}</td>
+                  <td className="p-3 text-text-muted">{algo.rationale}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* In-Memory Portfolio Data Structures Table */}
+      <div className="rounded-xl bg-surface-card/80 border border-border-glass p-space-md md:p-space-lg glow-border transition-all">
+        <div className="mb-4">
+          <div className="font-label-badge text-label-badge text-secondary mb-1">
+            PORTFOLIO ENGINE COMPLEXITY
+          </div>
+          <h3 className="font-title-md text-title-md font-bold text-text-primary">
+            This Portfolio&apos;s Client-Side Engine Complexity
+          </h3>
+        </div>
+
+        <div className="overflow-x-auto rounded border border-border-glass">
+          <table className="w-full text-left border-collapse font-label-code text-xs">
+            <thead>
+              <tr className="bg-surface-container-lowest border-b border-border-glass text-text-muted">
+                <th className="p-3">Structure / Pattern</th>
+                <th className="p-3">Data Structure</th>
+                <th className="p-3">Complexity Bounds</th>
+                <th className="p-3">Purpose &amp; Rationale</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border-glass/60 bg-surface-base/80">
+              {PORTFOLIO_DATA_STRUCTURES.map((ds) => (
+                <tr key={ds.requirement} className="hover:bg-surface-container-high/40 transition">
+                  <td className="p-3 font-semibold text-text-primary">{ds.requirement}</td>
+                  <td className="p-3 text-primary-container">{ds.structure}</td>
+                  <td className="p-3 font-mono text-tertiary-container">{ds.complexity}</td>
+                  <td className="p-3 text-text-muted">{ds.rationale}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </section>

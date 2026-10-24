@@ -5,7 +5,6 @@ import {
   ExternalLink,
   FileText,
   Mail,
-  MapPin,
   Send,
 } from 'lucide-react';
 import { GithubIcon as Github, LinkedinIcon as Linkedin } from './BrandIcons';
@@ -23,7 +22,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
   const [formState, setFormState] = useState({
     name: '',
     email: '',
-    subject: 'Engineering / AI & Data Science Opportunity',
+    subject: 'Enterprise AI & Vision Systems Architecture',
     message: '',
   });
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>(
@@ -58,7 +57,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
         setFormState({
           name: '',
           email: '',
-          subject: 'Engineering / AI & Data Science Opportunity',
+          subject: 'Enterprise AI & Vision Systems Architecture',
           message: '',
         });
       } else {
@@ -70,293 +69,240 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
   };
 
   return (
-    <section id="contact" className="py-20 sm:py-24 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-          {/* Left 6 Columns: Direct Contact Channels */}
-          <div className="lg:col-span-6 space-y-6">
-            <div>
-              <div className="font-mono text-xs uppercase tracking-widest text-indigo-400 mb-2">
-                08 / CONTACT &amp; COLLABORATION
-              </div>
-              <h2 className="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">
-                Let’s Build Impactful Systems Together
-              </h2>
-              <p className="text-slate-400 text-sm sm:text-base mt-2 leading-relaxed">
-                Currently pursuing an MBA in AI &amp; Data Science at TAPMI Manipal (2026–2028).
-                Open to summer internships (2027), live projects, and full-time roles in AI/ML
-                engineering, data science, and backend engineering.
-              </p>
-            </div>
+    <section className="py-space-2xl max-w-[1320px] mx-auto px-space-md sm:px-space-xl" id="contact">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center" id="console">
+        {/* Terminal Prompt Context (5 cols) */}
+        <div className="lg:col-span-5">
+          <div className="flex items-center gap-2 text-primary-container font-label-badge text-label-badge mb-1 uppercase tracking-widest">
+            <span className="material-symbols-outlined text-sm">terminal</span>
+            ESTABLISH CONNECTION // CONSOLE
+          </div>
+          <h2 className="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-text-primary mb-space-sm">
+            Let&apos;s Engineer Next-Gen AI Infrastructure Together
+          </h2>
+          <p className="text-body-md font-body-md text-text-muted mb-space-md leading-relaxed">
+            Available for Enterprise AI Architecture, Staff AI/Software Engineering appointments,
+            technical consultations, and collaborative research initiatives.
+          </p>
 
-            {/* Direct Channel Cards */}
-            <div className="space-y-3">
-              {/* Personal Email - First */}
-              <div className="p-4 rounded-xl bg-[#090e1c] border border-slate-800 flex items-center justify-between gap-3">
-                <div className="flex items-center gap-3 min-w-0">
-                  <div className="p-2.5 rounded-lg bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 shrink-0">
-                    <Mail className="w-4 h-4" />
-                  </div>
-                  <div className="min-w-0">
-                    <div className="font-mono text-[11px] text-slate-400">Direct Personal Email</div>
-                    <a
-                      href={`mailto:${PROFILE_DATA.contacts.personalEmail}`}
-                      className="font-mono text-xs sm:text-sm text-white hover:text-cyan-300 truncate block"
-                    >
-                      {PROFILE_DATA.contacts.personalEmail}
-                    </a>
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => handleCopy(PROFILE_DATA.contacts.personalEmail)}
-                  className="px-2.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 font-mono text-xs text-slate-300 inline-flex items-center gap-1 shrink-0"
-                >
-                  {copiedEmail === PROFILE_DATA.contacts.personalEmail ? (
-                    <>
-                      <Check className="w-3.5 h-3.5 text-emerald-400" />
-                      <span className="text-emerald-300">Copied</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-3.5 h-3.5" />
-                      <span>Copy</span>
-                    </>
-                  )}
-                </button>
-              </div>
-
-              {/* TAPMI Academic Email - Second */}
-              <div className="p-4 rounded-xl bg-[#090e1c] border border-slate-800 flex items-center justify-between gap-3">
-                <div className="flex items-center gap-3 min-w-0">
-                  <div className="p-2.5 rounded-lg bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 shrink-0">
-                    <Mail className="w-4 h-4" />
-                  </div>
-                  <div className="min-w-0">
-                    <div className="font-mono text-[11px] text-slate-400">
-                      TAPMI email
-                    </div>
-                    <a
-                      href={`mailto:${PROFILE_DATA.contacts.academicEmail}`}
-                      className="font-mono text-xs sm:text-sm text-white hover:text-cyan-300 truncate block"
-                    >
-                      {PROFILE_DATA.contacts.academicEmail}
-                    </a>
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => handleCopy(PROFILE_DATA.contacts.academicEmail)}
-                  className="px-2.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 font-mono text-xs text-slate-300 inline-flex items-center gap-1 shrink-0"
-                >
-                  {copiedEmail === PROFILE_DATA.contacts.academicEmail ? (
-                    <>
-                      <Check className="w-3.5 h-3.5 text-emerald-400" />
-                      <span className="text-emerald-300">Copied</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-3.5 h-3.5" />
-                      <span>Copy</span>
-                    </>
-                  )}
-                </button>
-              </div>
-
-              {/* LinkedIn & GitHub Row */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <a
-                  href={PROFILE_DATA.contacts.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-4 rounded-xl bg-[#090e1c] border border-slate-800 hover:border-indigo-500/50 flex items-center justify-between transition"
-                >
-                  <div className="flex items-center gap-3">
-                    <Linkedin className="w-5 h-5 text-indigo-400" />
-                    <div>
-                      <div className="font-mono text-xs font-bold text-white">LinkedIn</div>
-                      <div className="font-mono text-[11px] text-slate-400">anurag-podder</div>
-                    </div>
-                  </div>
-                  <ExternalLink className="w-4 h-4 text-slate-500" />
-                </a>
-
-                <a
-                  href={PROFILE_DATA.contacts.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-4 rounded-xl bg-[#090e1c] border border-slate-800 hover:border-cyan-500/50 flex items-center justify-between transition"
-                >
-                  <div className="flex items-center gap-3">
-                    <Github className="w-5 h-5 text-cyan-400" />
-                    <div>
-                      <div className="font-mono text-xs font-bold text-white">GitHub</div>
-                      <div className="font-mono text-[11px] text-slate-400">@drkanurag</div>
-                    </div>
-                  </div>
-                  <ExternalLink className="w-4 h-4 text-slate-500" />
-                </a>
-              </div>
-            </div>
-
-            {/* Location & Resume Quick Box */}
-            <div className="p-5 rounded-2xl bg-slate-900/70 border border-slate-800 flex flex-wrap items-center justify-between gap-4">
-              <div className="flex items-center gap-2.5 text-xs font-mono text-slate-300">
-                <MapPin className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>{PROFILE_DATA.location}</span>
-              </div>
+          {/* Quick SSH / Protocol Matrix */}
+          <div className="bg-surface-card border border-border-glass p-3.5 rounded-lg font-label-code text-label-code space-y-2 mb-space-md">
+            <div className="flex items-center justify-between text-xs text-text-muted">
+              <span>PRIMARY_EMAIL</span>
               <button
                 type="button"
-                onClick={onOpenResumeModal}
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-mono text-xs font-semibold transition"
+                onClick={() => handleCopy(PROFILE_DATA.contacts.personalEmail)}
+                className="text-primary-container hover:underline flex items-center gap-1 font-semibold"
               >
-                <FileText className="w-3.5 h-3.5" />
-                <span>View Resume</span>
+                <span>{PROFILE_DATA.contacts.personalEmail}</span>
+                {copiedEmail === PROFILE_DATA.contacts.personalEmail ? (
+                  <Check className="w-3 h-3 text-tertiary-container" />
+                ) : (
+                  <Copy className="w-3 h-3" />
+                )}
               </button>
+            </div>
+            <div className="flex items-center justify-between text-xs text-text-muted">
+              <span>ACADEMIC_EMAIL</span>
+              <button
+                type="button"
+                onClick={() => handleCopy(PROFILE_DATA.contacts.academicEmail)}
+                className="text-secondary hover:underline flex items-center gap-1 font-semibold"
+              >
+                <span>{PROFILE_DATA.contacts.academicEmail}</span>
+                {copiedEmail === PROFILE_DATA.contacts.academicEmail ? (
+                  <Check className="w-3 h-3 text-tertiary-container" />
+                ) : (
+                  <Copy className="w-3 h-3" />
+                )}
+              </button>
+            </div>
+            <div className="flex items-center justify-between text-xs text-text-muted">
+              <span>COMM_CHANNELS</span>
+              <span className="text-tertiary-container font-semibold">SECURE_EMAIL // BOOK_CALL</span>
+            </div>
+            <div className="flex items-center justify-between text-xs text-text-muted">
+              <span>LOCATION_HUB</span>
+              <span className="text-text-primary font-semibold">{PROFILE_DATA.location}</span>
             </div>
           </div>
 
-          {/* Right 6 Columns: Accessible Validated Contact Form */}
-          <div className="lg:col-span-6">
-            <form
-              onSubmit={handleSubmit}
-              className="rounded-2xl bg-[#090e1c]/95 border border-slate-800/90 p-6 sm:p-8 space-y-4 shadow-xl"
+          <div className="flex items-center gap-space-sm">
+            <a
+              className="w-10 h-10 rounded-DEFAULT bg-surface-card border border-border-glass flex items-center justify-center text-text-muted hover:text-primary-container hover:border-glow transition-all"
+              href={PROFILE_DATA.contacts.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="GitHub"
             >
-              <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-                <h3 className="font-display text-lg font-bold text-white">
-                  Send a Direct Message
-                </h3>
-                <span className="font-mono text-[11px] text-emerald-400">
-                  Replies within 2 business days
+              <Github className="w-4 h-4" />
+            </a>
+
+            <a
+              className="w-10 h-10 rounded-DEFAULT bg-surface-card border border-border-glass flex items-center justify-center text-text-muted hover:text-primary-container hover:border-glow transition-all"
+              href={PROFILE_DATA.contacts.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="LinkedIn"
+            >
+              <Linkedin className="w-4 h-4" />
+            </a>
+
+            <a
+              className="w-10 h-10 rounded-DEFAULT bg-surface-card border border-border-glass flex items-center justify-center text-text-muted hover:text-primary-container hover:border-glow transition-all"
+              href={`mailto:${PROFILE_DATA.contacts.personalEmail}`}
+              title="Direct Email"
+            >
+              <Mail className="w-4 h-4" />
+            </a>
+
+            <button
+              type="button"
+              onClick={onOpenResumeModal}
+              className="h-10 px-3 rounded-DEFAULT bg-surface-card border border-border-glass flex items-center gap-1.5 text-text-muted hover:text-primary-container hover:border-glow font-label-code text-xs transition-all"
+              title="View Resume"
+            >
+              <FileText className="w-3.5 h-3.5 text-primary-container" />
+              <span>Resume.sys</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Developer Terminal Interactive Form (7 cols) */}
+        <div className="lg:col-span-7">
+          <div className="bg-surface-card/90 backdrop-blur-xl border border-border-glass rounded-xl shadow-[0_20px_40px_rgba(0,0,0,0.65)] glow-border overflow-hidden">
+            {/* Terminal Window Header */}
+            <div className="bg-surface-base px-4 py-2.5 border-b border-border-glass flex justify-between items-center">
+              <div className="flex items-center gap-2">
+                <span className="w-3 h-3 rounded-full bg-error/70 inline-block" />
+                <span className="w-3 h-3 rounded-full bg-secondary-container/70 inline-block" />
+                <span className="w-3 h-3 rounded-full bg-tertiary-container/70 inline-block" />
+                <span className="font-label-code text-label-code text-text-muted ml-2">
+                  bash -- anurag@systems-console:~$
                 </span>
               </div>
+              <span className="font-label-badge text-label-badge text-text-muted">
+                PORT: 443 [TLS 1.3]
+              </span>
+            </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label
-                    htmlFor="contact-name"
-                    className="block font-mono text-xs text-slate-300 mb-1.5"
-                  >
-                    Your Name *
-                  </label>
-                  <input
-                    id="contact-name"
-                    name="name"
-                    type="text"
-                    required
-                    value={formState.name}
-                    onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                    placeholder="Your name"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="contact-email"
-                    className="block font-mono text-xs text-slate-300 mb-1.5"
-                  >
-                    Your Email *
-                  </label>
-                  <input
-                    id="contact-email"
-                    name="email"
-                    type="email"
-                    required
-                    value={formState.email}
-                    onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                    placeholder="you@company.com"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label
-                  htmlFor="contact-subject"
-                  className="block font-mono text-xs text-slate-300 mb-1.5"
-                >
-                  Subject
-                </label>
-                <input
-                  id="contact-subject"
-                  name="subject"
-                  type="text"
-                  value={formState.subject}
-                  onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400"
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="contact-message"
-                  className="block font-mono text-xs text-slate-300 mb-1.5"
-                >
-                  Message *
-                </label>
-                <textarea
-                  id="contact-message"
-                  name="message"
-                  rows={4}
-                  required
-                  value={formState.message}
-                  onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                  placeholder="Hello Anurag, I reviewed your RoadVision AI and DataLens case studies..."
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400"
-                />
-              </div>
-
-              {/* Honeypot Spam Trap */}
+            {/* Form Area */}
+            <form onSubmit={handleSubmit} className="p-space-md md:p-space-lg space-y-space-md font-label-code text-label-code">
+              {/* Honeypot anti-spam field */}
               <input
                 type="text"
                 name="_gotcha"
                 tabIndex={-1}
                 autoComplete="off"
-                aria-hidden="true"
-                className="hidden"
                 value={honeypot}
                 onChange={(e) => setHoneypot(e.target.value)}
+                style={{ display: 'none' }}
+                aria-hidden="true"
               />
 
-              <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
-                <button
-                  type="submit"
-                  disabled={submitStatus === 'submitting'}
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-mono text-xs font-semibold shadow-lg transition disabled:opacity-50"
-                >
-                  <Send className="w-3.5 h-3.5" />
-                  <span>
-                    {submitStatus === 'submitting' ? 'Sending Message...' : 'Send Message'}
-                  </span>
-                </button>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+                <div>
+                  <label htmlFor="caller_name" className="block text-text-muted text-xs mb-1">
+                    CALLER_IDENTIFIER [NAME]
+                  </label>
+                  <input
+                    id="caller_name"
+                    required
+                    type="text"
+                    value={formState.name}
+                    onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+                    placeholder="e.g. Dr. Elena Vance"
+                    className="w-full bg-surface-base/85 border border-outline-variant/30 rounded-DEFAULT px-3 py-2 text-text-primary focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="caller_email" className="block text-text-muted text-xs mb-1">
+                    TRANSMISSION_RETURN [EMAIL]
+                  </label>
+                  <input
+                    id="caller_email"
+                    required
+                    type="email"
+                    value={formState.email}
+                    onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                    placeholder="name@enterprise.org"
+                    className="w-full bg-surface-base/85 border border-outline-variant/30 rounded-DEFAULT px-3 py-2 text-text-primary focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all"
+                  />
+                </div>
+              </div>
 
-                <a
-                  href={`mailto:${PROFILE_DATA.contacts.personalEmail}?subject=${encodeURIComponent(
-                    formState.subject
-                  )}&body=${encodeURIComponent(formState.message)}`}
-                  className="font-mono text-xs text-slate-400 hover:text-cyan-300 underline underline-offset-4"
+              <div>
+                <label htmlFor="caller_scope" className="block text-text-muted text-xs mb-1">
+                  ENGAGEMENT_SCOPE [SELECT INTENT]
+                </label>
+                <select
+                  id="caller_scope"
+                  value={formState.subject}
+                  onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
+                  className="w-full bg-surface-base/85 border border-outline-variant/30 rounded-DEFAULT px-3 py-2 text-text-primary focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all"
                 >
-                  Or open directly in your Email Client →
-                </a>
+                  <option>Enterprise AI &amp; Vision Systems Architecture</option>
+                  <option>Distributed Microservices &amp; Spring Boot Engineering</option>
+                  <option>Full-Time Senior / Lead Engineering Opportunities</option>
+                  <option>Academic Research Collaboration &amp; Keynote</option>
+                </select>
+              </div>
+
+              <div>
+                <label htmlFor="caller_message" className="block text-text-muted text-xs mb-1">
+                  TRANSMISSION_PAYLOAD [MESSAGE]
+                </label>
+                <textarea
+                  id="caller_message"
+                  required
+                  rows={4}
+                  value={formState.message}
+                  onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+                  placeholder="// Enter technical project specs, latency goals, or opportunity overview..."
+                  className="w-full bg-surface-base/85 border border-outline-variant/30 rounded-DEFAULT px-3 py-2 text-text-primary focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all resize-none"
+                />
               </div>
 
               {submitStatus === 'success' && (
-                <div className="p-3 rounded-xl bg-emerald-500/15 border border-emerald-500/30 font-mono text-xs text-emerald-300">
-                  ✓ Thank you! Your message has been delivered.
+                <div className="p-3 rounded bg-tertiary-container/10 border border-tertiary-container/30 text-tertiary-container text-xs">
+                  [SYS_ACK]: Transmission received. Telemetry packet dispatched to Anurag Podder.
                 </div>
               )}
+
               {submitStatus === 'error' && (
-                <div className="p-3 rounded-xl bg-amber-500/15 border border-amber-500/30 font-mono text-xs text-amber-200">
-                  Couldn&apos;t send your message right now. Please email me directly at{' '}
+                <div className="p-3 rounded bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs flex items-center justify-between">
+                  <span>Note: Endpoint busy. Please send directly via mail:</span>
                   <a
-                    href={`mailto:${PROFILE_DATA.contacts.personalEmail}`}
-                    className="underline font-bold"
+                    href={`mailto:${PROFILE_DATA.contacts.personalEmail}?subject=${encodeURIComponent(formState.subject)}&body=${encodeURIComponent(formState.message)}`}
+                    className="font-bold underline flex items-center gap-1"
                   >
-                    {PROFILE_DATA.contacts.personalEmail}
-                  </a>.
+                    <span>Send via Client</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
                 </div>
               )}
+
+              <div className="flex items-center justify-between pt-2">
+                <span className="text-xs text-text-muted flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-tertiary-container animate-pulse" />
+                  Socket: READY [200 OK]
+                </span>
+
+                <button
+                  type="submit"
+                  disabled={submitStatus === 'submitting'}
+                  className="px-space-md py-2.5 bg-primary-container text-surface-base rounded-DEFAULT font-label-code text-label-code font-bold shadow-[0_0_16px_rgba(0,240,255,0.4)] hover:shadow-[0_0_24px_rgba(0,240,255,0.6)] active:scale-95 transition-all flex items-center gap-2 disabled:opacity-50"
+                >
+                  {submitStatus === 'submitting' ? (
+                    <span>Dispatching...</span>
+                  ) : (
+                    <>
+                      <Send className="w-3.5 h-3.5" />
+                      <span>Dispatch Packet</span>
+                    </>
+                  )}
+                </button>
+              </div>
             </form>
           </div>
         </div>

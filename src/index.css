@@ -9,7 +9,7 @@
 
   html {
     scroll-behavior: smooth;
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'JetBrains Mono', 'Space Grotesk', system-ui, -apple-system, sans-serif;
     background-color: #060911;
     color: #f8fafc;
   }
@@ -28,11 +28,37 @@
   }
 }
 
+/* Custom glow pulse and scanline accents */
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 0.9; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.96); }
+}
+
+.animate-telemetry-pulse {
+  animation: pulse-subtle 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.hud-grid {
+  background-size: 24px 24px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 240, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
+}
+
+.glow-border {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glow-border:hover {
+  border-color: rgba(0, 240, 255, 0.55);
+  box-shadow: 0 0 24px rgba(0, 240, 255, 0.16);
+}
+
 /* Fine engineering blueprint grid background */
 .bg-blueprint-grid {
   background-size: 36px 36px;
-  background-image: linear-gradient(to right, rgba(99, 102, 241, 0.055) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(99, 102, 241, 0.055) 1px, transparent 1px);
+  background-image: linear-gradient(to right, rgba(0, 240, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 240, 255, 0.035) 1px, transparent 1px);
 }
 
 /* Direction B — Minimal Editorial Light Mode override when html.theme-editorial-light is active */
