@@ -140,12 +140,10 @@ export interface NavRouteDefinition {
 }
 
 export const STATIC_NAV_ROUTES: readonly NavRouteDefinition[] = [
-  { id: 'hero', number: '01', label: 'HOME', href: '#hero' },
+  { id: 'hero', number: '01', label: 'ABOUT', href: '#hero' },
   { id: 'projects', number: '02', label: 'PROJECTS', href: '#projects' },
-  { id: 'skills', number: '03', label: 'EXPERTISE', href: '#skills' },
+  { id: 'skills', number: '03', label: 'SKILLS', href: '#skills' },
   { id: 'experience', number: '04', label: 'EXPERIENCE', href: '#experience' },
   { id: 'research', number: '05', label: 'RESEARCH', href: '#research' },
-  { id: 'sdlc', number: '06', label: 'BUILD', href: '#sdlc' },
-  { id: 'architecture', number: '07', label: 'SYSTEMS', href: '#architecture' },
-  { id: 'contact', number: '08', label: 'CONTACT', href: '#contact' },
+  { id: 'contact', number: '06', label: 'CONTACT', href: '#contact' },
 ];

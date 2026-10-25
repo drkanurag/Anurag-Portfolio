@@ -30,14 +30,12 @@ interface NavItem {
 }
 
 const NAV_ITEMS: readonly NavItem[] = [
-  { id: 'hero', label: 'Telemetry' },
-  { id: 'projects', label: 'Case Studies' },
-  { id: 'catalogue', label: 'Catalogue' },
+  { id: 'hero', label: 'About' },
+  { id: 'projects', label: 'Projects' },
   { id: 'skills', label: 'Skills' },
+  { id: 'experience', label: 'Experience' },
   { id: 'research', label: 'Research' },
-  { id: 'experience', label: 'Milestones' },
-  { id: 'architecture', label: 'Systems' },
-  { id: 'contact', label: 'Console' },
+  { id: 'contact', label: 'Contact' },
 ];
 
 export const Navbar: React.FC<NavbarProps> = ({

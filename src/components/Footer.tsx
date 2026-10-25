@@ -23,38 +23,45 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateSection }) => {
         <nav aria-label="Footer Navigation" className="flex flex-wrap items-center justify-center gap-space-md font-label-code text-label-code">
           <button
             type="button"
-            onClick={() => onNavigateSection('architecture')}
-            className="text-text-muted hover:text-primary-container transition-colors duration-150"
-          >
-            Architecture Specs
-          </button>
-          <button
-            type="button"
             onClick={() => onNavigateSection('hero')}
             className="text-text-muted hover:text-primary-container transition-colors duration-150"
           >
-            Model Telemetry
+            About
+          </button>
+          <button
+            type="button"
+            onClick={() => onNavigateSection('projects')}
+            className="text-text-muted hover:text-primary-container transition-colors duration-150"
+          >
+            Projects
+          </button>
+          <button
+            type="button"
+            onClick={() => onNavigateSection('skills')}
+            className="text-text-muted hover:text-primary-container transition-colors duration-150"
+          >
+            Skills
+          </button>
+          <button
+            type="button"
+            onClick={() => onNavigateSection('experience')}
+            className="text-text-muted hover:text-primary-container transition-colors duration-150"
+          >
+            Experience
           </button>
           <button
             type="button"
             onClick={() => onNavigateSection('research')}
             className="text-text-muted hover:text-primary-container transition-colors duration-150"
           >
-            Publications Archive
-          </button>
-          <button
-            type="button"
-            onClick={() => onNavigateSection('sdlc')}
-            className="text-text-muted hover:text-primary-container transition-colors duration-150"
-          >
-            SDLC Lifecycle
+            Research
           </button>
           <button
             type="button"
             onClick={() => onNavigateSection('contact')}
             className="text-text-muted hover:text-primary-container transition-colors duration-150"
           >
-            Console Terminal
+            Contact
           </button>
         </nav>
       </div>

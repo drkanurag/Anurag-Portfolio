@@ -34,7 +34,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         <div className="flex justify-start mb-space-md">
           <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-surface-card/80 backdrop-blur-md border border-border-glass text-tertiary font-label-badge text-label-badge shadow-[0_0_15px_rgba(0,240,255,0.06)]">
             <span className="w-2 h-2 rounded-full bg-tertiary-container animate-pulse shadow-[0_0_8px_#65f2b5]" />
-            SYS_STATUS: READY FOR ENTERPRISE AI &amp; DISTRIBUTED SYSTEMS // AVAILABLE Q2 2025
+            STATUS: AI &amp; DATA SCIENCE ENGINEER // FULL-STACK SOFTWARE ENGINEERING
           </div>
         </div>
 
@@ -50,11 +50,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               that solve real-world problems.
             </h1>
 
-            <p className="text-body-lg font-body-lg text-text-muted max-w-2xl mt-space-xs">
-              <span className="text-text-primary font-semibold">Anurag Podder</span> — AI &amp;
-              Data Science Engineer with Full-Stack Software Engineering Expertise. Bridging
-              enterprise software engineering at Mphasis, advanced systems engineering, and
-              published AI research. MBA candidate in AI &amp; Data Science at TAPMI (2026–2028).
+            <p className="text-body-lg font-body-lg text-text-muted max-w-2xl mt-space-xs leading-relaxed">
+              <span className="text-text-primary font-semibold">Anurag Podder</span> — Software
+              engineer turned AI &amp; Data Science MBA candidate at TAPMI Manipal (2026–2028).
+              Professional engineering background at Mphasis spanning enterprise Java/Spring
+              backends, real-time computer vision systems, and published AI research.
             </p>
 
             {/* Quick Action CTA Group */}
@@ -63,8 +63,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 href="#contact"
                 className="inline-flex items-center gap-2 px-space-md py-3 rounded-DEFAULT bg-primary-container text-surface-base font-label-code text-label-code font-bold shadow-[0_0_20px_rgba(0,240,255,0.35)] hover:shadow-[0_0_28px_rgba(0,240,255,0.6)] active:scale-95 transition-all"
               >
-                <span className="material-symbols-outlined text-[18px]">bolt</span>
-                Deploy Contact / Book Call
+                <span className="material-symbols-outlined text-[18px]">mail</span>
+                Get in Touch
               </a>
 
               <button
@@ -73,7 +73,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 className="inline-flex items-center gap-2 px-space-md py-3 rounded-DEFAULT bg-surface-card/75 border border-border-glass text-text-primary font-label-code text-label-code hover:border-glow hover:text-primary-container active:scale-95 transition-all"
               >
                 <span className="material-symbols-outlined text-[18px]">account_tree</span>
-                View Case Studies
+                Explore Projects
               </button>
 
               <button
@@ -86,28 +86,28 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </button>
             </div>
 
-            {/* Live Telemetry Stat Pills */}
+            {/* Real Career Highlights Stat Pills */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-space-xs pt-space-md" id="telemetry">
               <div className="bg-surface-card/70 backdrop-blur-md border border-border-glass p-3 rounded-DEFAULT">
-                <div className="text-title-md font-title-md text-primary-container font-bold">99.4%</div>
-                <div className="text-label-badge font-label-badge text-text-muted">INFERENCING UPTIME</div>
+                <div className="text-title-md font-title-md text-primary-container font-bold">TAPMI</div>
+                <div className="text-label-badge font-label-badge text-text-muted">MBA (AI &amp; DS) 2026–28</div>
               </div>
               <div className="bg-surface-card/70 backdrop-blur-md border border-border-glass p-3 rounded-DEFAULT">
-                <div className="text-title-md font-title-md text-tertiary-container font-bold">8+</div>
-                <div className="text-label-badge font-label-badge text-text-muted">MICROSERVICES PROD</div>
+                <div className="text-title-md font-title-md text-tertiary-container font-bold">9.05 CGPA</div>
+                <div className="text-label-badge font-label-badge text-text-muted">B.TECH CSE (DISTINCTION)</div>
               </div>
               <div className="bg-surface-card/70 backdrop-blur-md border border-border-glass p-3 rounded-DEFAULT">
-                <div className="text-title-md font-title-md text-secondary font-bold">100K+</div>
-                <div className="text-label-badge font-label-badge text-text-muted">VECTORS BENCHMARKED</div>
+                <div className="text-title-md font-title-md text-secondary font-bold">Mphasis</div>
+                <div className="text-label-badge font-label-badge text-text-muted">SOFTWARE ENGINEER</div>
               </div>
               <div className="bg-surface-card/70 backdrop-blur-md border border-border-glass p-3 rounded-DEFAULT">
-                <div className="text-title-md font-title-md text-primary font-bold">1st Place</div>
-                <div className="text-label-badge font-label-badge text-text-muted">AI HACKATHON WINNER</div>
+                <div className="text-title-md font-title-md text-primary font-bold">Published</div>
+                <div className="text-label-badge font-label-badge text-text-muted">IJCRT RESEARCH AUTHOR</div>
               </div>
             </div>
           </div>
 
-          {/* Technical Telemetry & Portrait Pod Right Column (5 cols) */}
+          {/* Technical Profile Pod Right Column (5 cols) */}
           <div className="lg:col-span-5">
             <div className="relative bg-surface-card/90 backdrop-blur-xl border border-border-glass p-space-md rounded-xl shadow-[0_20px_40px_rgba(0,0,0,0.65)] glow-border transition-all">
               {/* Window Header Controls */}
@@ -117,15 +117,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   <span className="w-3 h-3 rounded-full bg-secondary-container/70 inline-block" />
                   <span className="w-3 h-3 rounded-full bg-tertiary-container/70 inline-block" />
                   <span className="ml-2 font-label-code text-label-code text-text-muted">
-                    arch_spec_node_v4.2
+                    anurag_profile_spec
                   </span>
                 </div>
                 <span className="font-label-badge text-label-badge text-primary-container bg-surface-container-high px-2 py-0.5 rounded-DEFAULT">
-                  LATENCY: 12ms
+                  STATUS: ACTIVE
                 </span>
               </div>
 
-              {/* Profile Image Container with Technical HUD Brackets */}
+              {/* Profile Image Container */}
               <div className="relative overflow-hidden rounded-lg border border-border-glass aspect-video sm:aspect-square max-h-[300px] mb-space-sm bg-surface-container-lowest">
                 <img
                   alt="Anurag Podder Technical Portrait"
@@ -136,25 +136,25 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 <div className="absolute bottom-2 left-2 right-2 bg-surface-base/90 backdrop-blur-md border border-border-glass p-2 flex justify-between items-center rounded-DEFAULT text-label-code font-label-code">
                   <span className="text-tertiary-container flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-tertiary-container animate-ping" />
-                    STATUS: EXEC_LEAD
+                    ROLE: AI_SWE_ENGINEER
                   </span>
-                  <span className="text-text-muted">ROLE: AI_DISTRIBUTED_ENG</span>
+                  <span className="text-text-muted">LOC: BENGALURU, IN</span>
                 </div>
               </div>
 
-              {/* Live Diagnostic Parameters */}
+              {/* Live Technical Parameters */}
               <div className="space-y-1.5 font-label-code text-label-code">
                 <div className="flex justify-between py-1 border-b border-outline-variant/30 text-text-muted">
-                  <span>RUNTIME_TARGET</span>
-                  <span className="text-text-primary">PyTorch / Spring Boot v3</span>
+                  <span>CORE_STACK</span>
+                  <span className="text-text-primary">Python / Java / Spring Boot 3</span>
                 </div>
                 <div className="flex justify-between py-1 border-b border-outline-variant/30 text-text-muted">
-                  <span>INFERENCE_ENGINE</span>
-                  <span className="text-primary-container">TensorRT 10.x &amp; CUDA 12.4</span>
+                  <span>AI_INFERENCE</span>
+                  <span className="text-primary-container">PyTorch / ONNX / OpenCV</span>
                 </div>
                 <div className="flex justify-between py-1 text-text-muted">
-                  <span>DATA_STORE_LAYER</span>
-                  <span className="text-secondary">PostgreSQL RLS / pgvector / Redis</span>
+                  <span>DATA_SYSTEMS</span>
+                  <span className="text-secondary">PostgreSQL / Redis / SQL</span>
                 </div>
               </div>
             </div>

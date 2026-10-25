@@ -1,12 +1,5 @@
 import React from 'react';
-import type { ProjectCaseStudy, SdlcPhaseNote } from '../types/portfolio';
-
-const STATUS_STYLE: Record<SdlcPhaseNote['status'], string> = {
-  Done: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
-  'Designed only': 'bg-amber-500/20 text-amber-300 border-amber-500/30',
-  Simulated: 'bg-violet-500/20 text-violet-300 border-violet-500/30',
-  'Not applicable': 'bg-slate-700/40 text-slate-300 border-slate-600',
-};
+import type { ProjectCaseStudy } from '../types/portfolio';
 
 const Card: React.FC<{
   kicker: string;
@@ -38,29 +31,11 @@ const Bullets: React.FC<{ title: string; items: string[] }> = ({ title, items })
 );
 
 export const CaseStudyEngineering: React.FC<{ caseStudy: ProjectCaseStudy }> = ({ caseStudy }) => {
-  const { sdlc, systemDesign, algorithms } = caseStudy;
-  if (!sdlc && !systemDesign && !algorithms) return null;
+  const { systemDesign, algorithms } = caseStudy;
+  if (!systemDesign && !algorithms) return null;
 
   return (
     <>
-      {sdlc && (
-        <Card kicker="SDLC / HOW THIS WAS BUILT" kickerClass="text-cyan-400" title="From Requirements to Delivery">
-          <ol className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {sdlc.map((p) => (
-              <li key={p.phase} className="p-4 rounded-xl bg-slate-900/85 border border-slate-800">
-                <div className="flex items-center justify-between gap-2 mb-1">
-                  <span className="font-mono text-xs font-semibold text-white">{p.phase}</span>
-                  <span className={`px-2 py-0.5 rounded border font-mono text-[10px] ${STATUS_STYLE[p.status]}`}>
-                    {p.status}
-                  </span>
-                </div>
-                <p className="text-xs text-slate-300 leading-relaxed">{p.summary}</p>
-              </li>
-            ))}
-          </ol>
-        </Card>
-      )}
-
       {systemDesign && (
         <Card kicker="SYSTEM DESIGN & SERVICES" kickerClass="text-indigo-400" title="Requirements, Scale and Trade-offs">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

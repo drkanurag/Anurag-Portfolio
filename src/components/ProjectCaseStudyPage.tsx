@@ -413,7 +413,7 @@ export const ProjectCaseStudyPage: React.FC<ProjectCaseStudyPageProps> = ({
             </section>
           </div>
 
-          {/* New Section: SDLC, System Design & Microservices, and Algorithms */}
+          {/* System Design, Microservices Architecture, and Algorithmic Rigor */}
           <CaseStudyEngineering caseStudy={caseStudy} />
 
           {/* 07. Honest Limitations & Next Steps */}

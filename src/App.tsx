@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { CommandPalette } from './components/CommandPalette';
 import { ContactSection } from './components/ContactSection';
-import { EngineeringApproachSection } from './components/EngineeringApproachSection';
 import { ExperienceSection } from './components/ExperienceSection';
 import { Footer } from './components/Footer';
 import { HeroSection } from './components/HeroSection';
@@ -10,7 +9,6 @@ import { ProjectCaseStudyPage } from './components/ProjectCaseStudyPage';
 import { ProjectsSection } from './components/ProjectsSection';
 import { ResearchSection } from './components/ResearchSection';
 import { ResumeModal } from './components/ResumeModal';
-import { SdlcSection } from './components/SdlcSection';
 import { TechnicalExpertiseSection } from './components/TechnicalExpertiseSection';
 import { getProjectBySlug, STATIC_NAV_ROUTES } from './lib/catalogueEngine';
 import { ProjectDomain, ProjectSlug } from './types/portfolio';
@@ -219,10 +217,6 @@ export function App() {
             <ExperienceSection />
 
             <ResearchSection onOpenCaseStudy={handleOpenCaseStudy} />
-
-            <SdlcSection onOpenCaseStudy={handleOpenCaseStudy} />
-
-            <EngineeringApproachSection onOpenCaseStudy={handleOpenCaseStudy} />
 
             <ContactSection onOpenResumeModal={() => setResumeModalOpen(true)} />
           </>

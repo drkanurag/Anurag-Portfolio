@@ -55,32 +55,24 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
     switch (project.slug) {
       case 'roadvision-ai':
         return (
-          <div className="relative bg-surface-container-lowest border border-border-glass rounded-lg p-3 hud-grid overflow-hidden">
-            <div className="flex items-center justify-between text-label-badge font-label-badge text-text-muted border-b border-border-glass pb-1 mb-2">
-              <span>INFERENCE STREAM // CAM_DEV_04</span>
-              <span className="text-primary-container">FPS: 47.2</span>
+          <div className="bg-surface-container-lowest border border-border-glass rounded-lg p-3 font-label-code text-label-code">
+            <div className="text-text-muted text-label-badge font-label-badge border-b border-border-glass pb-1 mb-2 flex justify-between">
+              <span>PIPELINE ARCHITECTURE</span>
+              <span className="text-primary-container">YOLOV8 ENSEMBLE</span>
             </div>
-            <div className="relative w-full h-32 bg-surface-card/60 rounded border border-outline-variant/40 flex items-center justify-center p-2">
-              <div className="absolute top-2 left-4 border-2 border-primary-container bg-primary-container/10 p-1 rounded-sm w-32 h-16 pointer-events-none">
-                <span className="bg-primary-container text-surface-base font-label-code text-[10px] px-1 font-bold absolute -top-3.5 left-0">
-                  D40 Pothole: 96.4%
-                </span>
-                <div className="text-[9px] font-label-code text-primary-container mt-2">
-                  [ASTM: HIGH SEV]
-                </div>
+            <div className="space-y-1.5">
+              <div className="flex justify-between items-center text-xs">
+                <span className="text-text-muted">Distress Taxonomy:</span>
+                <span className="text-text-primary">8 Defect Classes (ASTM D6433)</span>
               </div>
-              <div className="absolute bottom-2 right-4 border border-secondary bg-secondary/10 p-1 rounded-sm w-36 h-12 pointer-events-none">
-                <span className="bg-secondary text-surface-base font-label-code text-[10px] px-1 font-bold absolute -top-3.5 left-0">
-                  D20 Alligator Crack: 92.1%
-                </span>
+              <div className="flex justify-between items-center text-xs">
+                <span className="text-text-muted">Post-Processing:</span>
+                <span className="text-secondary">Weighted Boxes Fusion (WBF)</span>
               </div>
-              <div className="text-center text-text-muted text-label-badge font-label-badge">
-                [ CAMERA FEED → PRE-PROC → YOLOV8 WBF → ASTM D6433 PCI ]
+              <div className="flex justify-between items-center text-xs">
+                <span className="text-text-muted">Index Generation:</span>
+                <span className="text-tertiary-container">Deduct Value Curves → PCI Score</span>
               </div>
-            </div>
-            <div className="flex justify-between items-center mt-2 text-label-badge font-label-badge text-text-muted">
-              <span>CONFIDENCE THRESHOLD: 0.85</span>
-              <span className="text-tertiary-container">SYS_BUFFER: 0 FRAME DROP</span>
             </div>
           </div>
         );
@@ -244,7 +236,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                         className="inline-flex items-center gap-1.5 px-space-md py-2 bg-primary-container text-surface-base rounded-DEFAULT font-label-code text-label-code font-bold hover:shadow-[0_0_16px_rgba(0,240,255,0.4)] transition-all"
                       >
                         <span className="material-symbols-outlined text-[16px]">visibility</span>
-                        <span>{isLabOpen ? 'Close Live HUD' : 'Inspect Live HUD Telemetry'}</span>
+                        <span>{isLabOpen ? 'Close Lab' : 'Try Interactive Lab'}</span>
                       </button>
 
                       <button
@@ -252,8 +244,8 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                         onClick={() => onOpenCaseStudy(project.slug)}
                         className="inline-flex items-center gap-1.5 px-3 py-2 border border-border-glass hover:border-glow text-text-primary rounded-DEFAULT font-label-code text-label-code transition-all"
                       >
-                        <span className="material-symbols-outlined text-[16px]">code</span>
-                        <span>Architecture Spec</span>
+                        <span className="material-symbols-outlined text-[16px]">menu_book</span>
+                        <span>Read Case Study</span>
                       </button>
 
                       {project.links.github && (
@@ -312,7 +304,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                     <div className="flex items-center justify-between mb-3">
                       <div className="font-label-badge text-label-badge text-primary-container flex items-center gap-2">
                         <Sparkles className="w-3.5 h-3.5" />
-                        <span>ACTIVE TELEMETRY LAB // {project.shortTitle.toUpperCase()}</span>
+                        <span>INTERACTIVE LAB // {project.shortTitle.toUpperCase()}</span>
                       </div>
                       <button
                         type="button"
@@ -320,7 +312,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                         className="text-text-muted hover:text-text-primary font-label-code text-label-code flex items-center gap-1"
                       >
                         <X className="w-3.5 h-3.5" />
-                        <span>Minimize HUD</span>
+                        <span>Close Lab</span>
                       </button>
                     </div>
                     <InteractiveProjectLab
